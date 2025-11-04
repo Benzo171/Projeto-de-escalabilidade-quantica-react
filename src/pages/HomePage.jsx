@@ -1,6 +1,5 @@
 import InfoCard from '../components/common/InfoCard';
 import VideoSection from '../components/common/VideoSection';
-import ComparisonSection from '../components/common/ComparisonSection';
 import quanticaImage from '../assets/imagens/frente-quantica.png';
 import classicaImage from '../assets/imagens/Frente-classica.png';
 
@@ -14,14 +13,23 @@ const HomePage = () => {
             <span className="block mb-2 animate-fade-in text-white">
               Computação clássica calcula
             </span>
-            <span className="block text-white-400 animate-fade-in animation-delay-500 text-right ">
-              a quântica transforma.
+            <span className="block animate-fade-in animation-delay-500 text-right text-[#7703BA] ">
+              a Quântica transforma.
             </span>
           </h1>
         </div>
       </section>
 
-      {/* Info Boxes Section */}
+      {/* Video Section */}
+      <VideoSection />
+
+
+
+
+
+
+
+       {/* Info Boxes Section */}
       <section className="py-45">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
@@ -52,11 +60,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <VideoSection />
-
-      {/* Comparison Section */}
-      <ComparisonSection />
     </div>
   );
 };
