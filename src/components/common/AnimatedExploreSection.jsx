@@ -23,26 +23,23 @@ const AnimatedExploreSection = ({ image, titleText, buttonLink, buttonText, para
         {/* 3. IMAGEM: Fica FORA de um container */}
         {/* Este 'div' é 'w-full' (largura total) */}
         {/* É ISSO QUE FAZ A IMAGEM IR DE PONTA A PONTA */}
-        <div className="w-full h-[325px] overflow-hidden mb-12"> 
+        <div className="w-full h-[325px] overflow-hidden mb-12 relative"> 
           <img 
             src={image} 
             alt={titleText} 
             className="w-full h-full object-cover" 
           />
-        </div>
-        {/* ---------------------------------- */}
-        
-        {/* BOTÃO: Fica DENTRO de um container */}
-        <div className="container mx-auto px-6 max-w-3xl  ">
-          <div className="mb-25">
+
             <Link 
               to={buttonLink} 
-              className="bg-[#7703BA] text-white font-bold text-xl py-3 px-10 rounded-lg hover:bg-purple-700 transition-colors duration-300"
+              className="bg-[#7703BA] text-black font-bold text-xl py-4 px-20 rounded-lg hover:bg-purple-700 transition-colors duration-300 absolute bottom-5 left-1/2 -translate-x-1/2 "
             >
               {buttonText}
             </Link>
-          </div>
+
+
         </div>
+      
         
         {/* PARÁGRAFO: Fica DENTRO de um container */}
         <div className="container mx-auto px-6 max-w-3xl mp-35">
