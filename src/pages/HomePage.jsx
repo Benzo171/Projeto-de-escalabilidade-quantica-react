@@ -8,6 +8,8 @@ import CategoryButton from '../components/common/CategoryButton';
 import roteamentoImage from '../assets/imagens/CARD_ROTEAMENTO.png'; 
 import financeiroImage from '../assets/imagens/CARD_FINANCEIRO.png';
 import matematicaImage from '../assets/imagens/CARD_MATEMATICA.png';
+import exploreImage from '../assets/imagens/image-142.png';
+import AnimatedExploreSection from '../components/common/AnimatedExploreSection';
 import { Link } from 'react-router-dom';`
 `
 const HomePage = () => {
@@ -62,13 +64,12 @@ const HomePage = () => {
 
       </section>
 
-      {/* --- NOVA SEÇÃO: Tudo está conectado! --- */}
       <section className="py-20 text-center "> {/* Mantém o fundo escuro */}
         <div className="container mx-auto px-6 max-w-4xl"> {/* Centraliza e limita a largura */}
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Tudo está conectado!
           </h2>
-          <p className="text-xl md:text-2xl text-white-20 leading-relaxed mx-z mb-79">
+          <p className="text-xl md:text-2xl text-white-20 leading-relaxed mx-z mb-59">
             Seja para otimizar suas Finanças, entender a lógica por trás da Matemática ou
             desvendar como o Rateamento conecta o mundo, nossos cards são o atalho que
             você precisa. Oferecemos um resumo visual e impactante dos conceitos essenciais
@@ -76,7 +77,7 @@ const HomePage = () => {
           </p>
         </div>
 {/* --- 3. ADICIONE O NOVO GRID DE BOTÕES AQUI --- */}
-          <div className="grid grid-cols1 md:grid-cols-3 gap-65 mt-16 md:mt-24 max-w-2xl mx-auto">
+          <div className="grid grid-cols1 md:grid-cols-3 gap-85 mt-16 md:mt-24 max-w-2xl mx-auto">
             <CategoryButton
               image={roteamentoImage}
               title=""
@@ -94,12 +95,23 @@ const HomePage = () => {
             />
           </div>
 
-
-        
       </section>
 
-     
-  
+      <section>
+        <div>
+          
+        
+         <AnimatedExploreSection
+        image={exploreImage}
+        titleText="Explore Nosso Universo"
+        buttonLink="/explore" // Defina o link do botão
+        buttonText="Lets go"
+        paragraphText="Mergulhe fundo nos conceitos que movem o mundo da tecnologia. Nossa plataforma oferece as ferramentas que você precisa para transformar curiosidade em conhecimento."
+      />
+        
+
+        </div>
+      </section>
         
     </div>
   );
