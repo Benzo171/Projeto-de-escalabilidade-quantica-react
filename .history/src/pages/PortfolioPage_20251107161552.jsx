@@ -48,7 +48,7 @@ const PortfolioPage = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white py-20" style={{ backgroundColor: '#111' }}>
+    <div className="min-h-screen text-white py-20">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -61,7 +61,7 @@ const PortfolioPage = () => {
           
           <Link 
             to="/fundamentos"
-            className="inline-block bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-medium"
           >
             Voltar aos Fundamentos
           </Link>
@@ -69,7 +69,7 @@ const PortfolioPage = () => {
 
         {/* Visualização do problema */}
         <div className="mb-16">
-          <div className="bg-transparent rounded-lg p-8 max-w-4xl mx-auto border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
+          <div className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-8 max-w-4xl mx-auto border border-gray-700/50">
             <h2 className="text-2xl font-semibold mb-6 text-center">Fronteira Eficiente</h2>
             <div className="relative bg-gray-900/50 rounded-lg p-8 h-64">
               {/* Gráfico simulado da fronteira eficiente */}
@@ -120,15 +120,15 @@ const PortfolioPage = () => {
             return (
               <div 
                 key={index}
-                className="bg-transparent rounded-lg p-6 border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 cursor-pointer group"
+                className="bg-gray-800/30 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-105"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-purple-600/30 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/50 transition-all duration-300">
-                    <IconComponent className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
+                  <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <IconComponent className="w-6 h-6 text-blue-400" />
                   </div>
                   
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300">
+                    <h3 className="text-lg font-semibold text-white">
                       {conceito.titulo}
                     </h3>
                     
@@ -136,7 +136,7 @@ const PortfolioPage = () => {
                       {conceito.conteudo}
                     </p>
                     
-                    <div className="bg-gray-900/50 rounded p-3 font-mono text-sm text-purple-300 border border-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300">
+                    <div className="bg-gray-900/50 rounded p-3 font-mono text-sm text-blue-300">
                       {conceito.formula}
                     </div>
                   </div>
@@ -156,13 +156,13 @@ const PortfolioPage = () => {
               return (
                 <div 
                   key={index}
-                  className="bg-transparent rounded-lg p-6 border border-green-500/30 text-center transition-all duration-300 hover:border-green-500/60 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 cursor-pointer group"
+                  className="bg-gradient-to-br from-green-900/20 to-blue-900/20 backdrop-blur-sm rounded-lg p-6 border border-green-500/20 text-center"
                 >
-                  <div className="w-16 h-16 bg-green-600/30 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600/50 transition-all duration-300">
-                    <IconComponent className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors duration-300" />
+                  <div className="w-16 h-16 bg-green-600/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <IconComponent className="w-8 h-8 text-green-400" />
                   </div>
                   
-                  <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-green-300 transition-colors duration-300">
+                  <h3 className="text-lg font-semibold text-white mb-3">
                     {vantagem.titulo}
                   </h3>
                   
@@ -175,10 +175,10 @@ const PortfolioPage = () => {
           </div>
 
           {/* Exemplo prático */}
-          <div className="bg-transparent rounded-lg p-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
+          <div className="bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-green-900/20 backdrop-blur-sm rounded-lg p-8 border border-blue-500/10">
             <h3 className="text-2xl font-semibold text-center mb-6">Exemplo Prático</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-4 rounded-lg bg-transparent border border-blue-500/30 transition-all duration-300 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/20">
+              <div>
                 <h4 className="text-lg font-semibold text-blue-300 mb-3">Abordagem Clássica</h4>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• Otimização quadrática: O(n³)</li>
@@ -188,7 +188,7 @@ const PortfolioPage = () => {
                 </ul>
               </div>
               
-              <div className="p-4 rounded-lg bg-transparent border border-green-500/30 transition-all duration-300 hover:border-green-500/60 hover:shadow-lg hover:shadow-green-500/20">
+              <div>
                 <h4 className="text-lg font-semibold text-green-300 mb-3">Abordagem Quântica</h4>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• QAOA: Exploração paralela</li>

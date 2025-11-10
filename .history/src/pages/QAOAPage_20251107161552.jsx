@@ -5,7 +5,7 @@ import bolinhaIcon from '../assets/imgs_icones/bolinha.png';
 
 const QAOAPage = () => {
   return (
-    <div className="min-h-screen text-white py-20 px-6" style={{ backgroundColor: '#111' }}>
+    <div className="min-h-screen text-white py-20 px-6">
       <div className="max-w-4xl mx-auto">
         
         {/* Título */}
@@ -14,12 +14,12 @@ const QAOAPage = () => {
         </h1>
 
         {/* Container Principal */}
-        <div className="bg-[#6A1B9A] rounded-2xl p-8 space-y-8">
+        <div className="bg-purple-600/60 rounded-2xl p-8 space-y-8">
           
           {/* Botão Voltar */}
           <Link 
             to="/fundamentos" 
-            className="inline-block bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-colors duration-300 border border-purple-500"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
           >
             Voltar
           </Link>

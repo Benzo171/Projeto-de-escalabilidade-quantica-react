@@ -2,7 +2,7 @@ import caixeiroIcon from '../assets/imgs_icones/CaixeiroViajante.png';
 import qaoaIcon from '../assets/imgs_icones/QAOA.png';
 import portfolioIcon from '../assets/imgs_icones/OtimizacaoPortfolio.png';
 import complexidadeIcon from '../assets/imgs_icones/ComplexidadeComputacional.png';
-const FundamentosPage = () => {  const cards = [
+const FundamentosPage = () => {\n  const cards = [
     {
       id: 1,
       icon: caixeiroIcon,
