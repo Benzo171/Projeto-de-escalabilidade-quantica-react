@@ -7,26 +7,6 @@ import vqeIcon from '../assets/imgs_icones/VQE.png';
 import quantumIcon from '../assets/imgs_icones/Quantum.png';
 import React, { useEffect, useState } from 'react';
 
-// Componente auxiliar para animar a entrada de cada bloco
-const AnimatedBlock = ({ children, delay, isVisible }) => {
-  const [blockVisible, setBlockVisible] = useState(false);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setBlockVisible(true);
-      }, delay);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible, delay]);
-
-  const animationClasses = `transition-all duration-700 ease-out transform ${
-    blockVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-  }`;
-
-  return <div className={animationClasses}>{children}</div>;
-};
-
 const ComplexidadePage = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,9 +17,16 @@ const ComplexidadePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Removendo a função getAnimationClasses, pois usaremos o AnimatedBlock
-  // const getAnimationClasses = (delay) => { ... }
-
+  const getAnimationClasses = (delay) => {
+    const animationClasses = `transition-all duration-700 ease-out transform`;
+    // Adiciona um pequeno delay para a animação em cascata
+    const style = { transitionDelay: `${delay}ms` };
+    
+    if (isVisible) {
+      return { className: `${animationClasses} opacity-100 translate-y-0`, style };
+    }
+    return { className: `${animationClasses} opacity-0 translate-y-10`, style };
+  };
   const algoritmosClassicos = [
     {
       icon: caixeiroIcon,
@@ -81,27 +68,27 @@ const ComplexidadePage = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Botão Voltar */}
-        <AnimatedBlock delay={0} isVisible={isVisible}>
+        <div {...getAnimationClasses(0)}>
           <Link 
             to="/fundamentos" 
             className="inline-block mb-8 bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
           >
             Voltar
           </Link>
-        </AnimatedBlock>
+        </div>
 
         {/* Título */}
-        <AnimatedBlock delay={100} isVisible={isVisible}>
+        <div {...getAnimationClasses(100)}>
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Complexidade Computacional
           </h1>
-        </AnimatedBlock>
+        </div>
 
         {/* Conteúdo Principal */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
           {/* Algoritmos Clássicos */}
-          <AnimatedBlock delay={200} isVisible={isVisible}>
+          <div {...getAnimationClasses(200)}>
             <div className="bg-transparent rounded-2xl p-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
               <h3 className="text-2xl font-semibold mb-8 text-center">Algoritmos Clássicos</h3>
               
@@ -126,10 +113,10 @@ const ComplexidadePage = () => {
                 ))}
               </div>
             </div>
-          </AnimatedBlock>
+          </div>
 
           {/* Algoritmos Quânticos */}
-          <AnimatedBlock delay={400} isVisible={isVisible}>
+          <div {...getAnimationClasses(400)}>
             <div className="bg-transparent rounded-2xl p-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
               <h3 className="text-2xl font-semibold mb-8 text-center">Algoritmos Quânticos</h3>
               
@@ -154,17 +141,17 @@ const ComplexidadePage = () => {
                 ))}
               </div>
             </div>
-          </AnimatedBlock>
+          </div>
         </div>
 
         {/* Texto de Rodapé */}
-        <AnimatedBlock delay={600} isVisible={isVisible}>
+        <div {...getAnimationClasses(600)}>
           <div className="mt-12 text-center">
             <p className="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">
               Enquanto algoritmos clássicos ficam inviáveis em larga escala, os quânticos buscam soluções mais eficientes e escaláveis.
             </p>
           </div>
-        </AnimatedBlock>
+        </div>
 
       </div>
     </div>

@@ -12,23 +12,19 @@ const CaixeiroPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Função para obter as classes de animação com delay para efeito em cascata
   const getAnimationClasses = (delay) => {
     const animationClasses = `transition-all duration-700 ease-out transform`;
-    const style = { transitionDelay: `${delay}ms` };
-    
     if (isVisible) {
-      return { className: `${animationClasses} opacity-100 translate-y-0`, style };
+      return `${animationClasses} opacity-100 translate-y-0`;
     }
-    return { className: `${animationClasses} opacity-0 translate-y-10`, style };
+    return `${animationClasses} opacity-0 translate-y-10`;
   };
-
   return (
     <div className="min-h-screen text-white px-6 pt-12" style={{ backgroundColor: '#111' }}>
       <div className="max-w-4xl mx-auto">
         
         {/* Botão Voltar */}
-        <div {...getAnimationClasses(0)}>
+        <div className={getAnimationClasses(0)}>
           <Link 
             to="/fundamentos" 
             className="inline-block mb-8 bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
@@ -38,14 +34,14 @@ const CaixeiroPage = () => {
         </div>
 
         {/* Título */}
-        <div {...getAnimationClasses(100)}>
+        <div className={getAnimationClasses(100)}>
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Problema do Caixeiro Viajante (TSP)
           </h1>
         </div>
 
         {/* Card Principal */}
-        <div {...getAnimationClasses(200)}>
+        <div className={getAnimationClasses(200)}>
           <div className="mb-8 flex flex-col md:flex-row items-center gap-6 p-6 rounded-2xl border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 group">
             <div className="flex-shrink-0">
               <img 
@@ -64,7 +60,7 @@ const CaixeiroPage = () => {
         </div>
 
         {/* Função Objetivo e Restrições */}
-        <div {...getAnimationClasses(400)}>
+        <div className={getAnimationClasses(400)}>
           <div className="bg-transparent rounded-2xl p-8 mb-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 group">
             <h3 className="text-2xl font-semibold mb-4 group-hover:text-purple-300 transition-colors duration-300">Função Objetivo:</h3>
             
