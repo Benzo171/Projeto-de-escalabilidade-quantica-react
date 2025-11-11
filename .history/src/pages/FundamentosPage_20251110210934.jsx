@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Importando Link
 import caixeiroIcon from '../assets/imgs_icones/CaixeiroViajante.png';
 import qaoaIcon from '../assets/imgs_icones/QAOA.png';
 import portfolioIcon from '../assets/imgs_icones/OtimizacaoPortfolio.png';
@@ -15,9 +14,8 @@ const FundamentosPage = () => {
     return savedIndex !== null ? parseInt(savedIndex, 10) : 0;
   });
   
-  // REMOVENDO ESTADOS DE ANIMAÇÃO INTERNA, POIS A ANIMAÇÃO SERÁ FEITA NO NÍVEL DA PÁGINA
-  // const [isAnimating, setIsAnimating] = useState(false);
-  // const [direction, setDirection] = useState(null); // 'next' or 'prev'
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState(null); // 'next' or 'prev'
 
   // Efeito para salvar o índice atual no localStorage sempre que ele mudar
   useEffect(() => {
@@ -57,27 +55,61 @@ const FundamentosPage = () => {
 
   const totalCards = cards.length;
 
-  // 2. Lógica de Navegação SIMPLIFICADA
+  // 2. Lógica de Navegação Aprimorada com Animação
+  const navigate = (newIndex, navDirection) => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+    setDirection(navDirection);
+
+    // 1. Animação de Saída (Fade-out e Slide)
+    setTimeout(() => {
+      // 2. Atualiza o Card (Troca o conteúdo)
+      setCurrentCardIndex(newIndex);
+      
+      // 3. Animação de Entrada (Fade-in e Slide)
+      // Um pequeno delay antes de remover a classe de animação para o novo card aparecer
+      setTimeout(() => {
+        setIsAnimating(false);
+        setDirection(null);
+      }, 300); // Duração da transição CSS
+    }, 300); // Duração da transição CSS
+  };
+
   const goToNextCard = () => {
     const newIndex = (currentCardIndex + 1) % totalCards;
-    setCurrentCardIndex(newIndex);
+    navigate(newIndex, 'next');
   };
 
   const goToPrevCard = () => {
     const newIndex = (currentCardIndex - 1 + totalCards) % totalCards;
-    setCurrentCardIndex(newIndex);
+    navigate(newIndex, 'prev');
   };
 
   const goToCard = (index) => {
     if (index === currentCardIndex) return;
-    setCurrentCardIndex(index);
+    const navDirection = index > currentCardIndex ? 'next' : 'prev';
+    navigate(index, navDirection);
   };
 
   const currentCard = cards[currentCardIndex];
 
-  // 3. Classes de Animação INTERNA REMOVIDAS
-  // Apenas a classe base para transição de conteúdo do card (não da página)
-  const animationClasses = 'transition-all duration-500 ease-in-out transform opacity-100 translate-x-0';
+  // 3. Classes de Animação Aprimoradas
+  let animationClasses = 'transition-all duration-300 ease-in-out';
+  if (isAnimating) {
+    // Durante a animação, o card fica transparente e ligeiramente deslocado
+    animationClasses += ' opacity-0';
+    if (direction === 'next') {
+      // Move para a esquerda ao sair, e vem da direita ao entrar (efeito de slide)
+      animationClasses += ' translate-x-10';
+    } else if (direction === 'prev') {
+      // Move para a direita ao sair, e vem da esquerda ao entrar (efeito de slide)
+      animationClasses += ' -translate-x-10';
+    }
+  } else {
+    // Quando não está animando, o card está totalmente visível e na posição normal
+    animationClasses += ' opacity-100 translate-x-0';
+  }
 
   return (
     <>
@@ -102,7 +134,7 @@ const FundamentosPage = () => {
             </svg>
           </button>
 
-          {/* Card Único SEM ANIMAÇÃO INTERNA, apenas o conteúdo */}
+          {/* Card Único com Animação */}
           <div className="flex justify-center">
             <div 
               key={currentCard.id}
@@ -129,13 +161,13 @@ const FundamentosPage = () => {
                 </p>
               </div>
               
-              {/* Botão "Ver Fórmula" - AGORA USA <Link> */}
-              <Link 
-                to={currentCard.link}
+              {/* Botão "Ver Fórmula" */}
+              <a 
+                href={currentCard.link}
                 className="ver-formula-btn bg-black border-none py-3 px-6 text-white text-lg font-semibold text-center rounded-lg cursor-pointer mt-4 transition-transform duration-150 hover:bg-white hover:text-black inline-block text-decoration-none shadow-lg w-full active:scale-90"
               >
                 Ver Fórmula
-              </Link>
+              </a>
             </div>
           </div>
 

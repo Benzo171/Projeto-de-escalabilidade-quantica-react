@@ -1,208 +1,173 @@
-import { Link } from 'react-router-dom';
-import { TrendingUp, DollarSign, BarChart3, PieChart, Target, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Importando Link
+import caixeiroIcon from '../assets/imgs_icones/CaixeiroViajante.png';
+import qaoaIcon from '../assets/imgs_icones/QAOA.png';
+import portfolioIcon from '../assets/imgs_icones/OtimizacaoPortfolio.png';
+import complexidadeIcon from '../assets/imgs_icones/ComplexidadeComputacional.png';
 
-const PortfolioPage = () => {
-  const conceitos = [
+// Chave para armazenar o índice do card no localStorage
+const STORAGE_KEY = 'currentCardIndex';
+
+const FundamentosPage = () => {
+  // 1. Persistência de Estado: Inicializa o estado com o valor do localStorage, se existir.
+  const [currentCardIndex, setCurrentCardIndex] = useState(() => {
+    const savedIndex = localStorage.getItem(STORAGE_KEY);
+    return savedIndex !== null ? parseInt(savedIndex, 10) : 0;
+  });
+  
+  // REMOVENDO ESTADOS DE ANIMAÇÃO INTERNA, POIS A ANIMAÇÃO SERÁ FEITA NO NÍVEL DA PÁGINA
+  // const [isAnimating, setIsAnimating] = useState(false);
+  // const [direction, setDirection] = useState(null); // 'next' or 'prev'
+
+  // Efeito para salvar o índice atual no localStorage sempre que ele mudar
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, currentCardIndex.toString());
+  }, [currentCardIndex]);
+
+  const cards = [
     {
-      icon: TrendingUp,
-      titulo: "Função Objetivo",
-      conteudo: "Maximizar o retorno esperado do portfólio enquanto minimiza o risco através da diversificação de investimentos.",
-      formula: "max E[R] - λ * Var[R]"
+      id: 1,
+      icon: caixeiroIcon,
+      title: "Problema do Caixeiro Viajante (TSP)",
+      description: "Encontrar a rota mais curta que passa por toda a cidade exatamente uma vez.",
+      link: "/caixeiro"
     },
     {
-      icon: BarChart3,
-      titulo: "Matriz de Covariância",
-      conteudo: "Representa as correlações entre diferentes ativos financeiros para calcular o risco total do portfólio.",
-      formula: "Σ = E[(R - μ)(R - μ)ᵀ]"
+      id: 2,
+      icon: qaoaIcon, 
+      title: "Algoritmo QAOA para TSP",
+      description: "Algoritmo quântico para otimização de rotas.",
+      link: "/qaoa"
     },
     {
-      icon: Target,
-      titulo: "Fronteira Eficiente",
-      conteudo: "Conjunto de portfólios que oferecem o maior retorno esperado para cada nível de risco.",
-      formula: "min wᵀΣw sujeito a wᵀμ = μₚ"
+      id: 3,
+      icon: portfolioIcon,
+      title: "Otimização de Portfólio", 
+      description: "Distribuir investimentos para maximizar retornos.",
+      link: "/portfolio"
     },
     {
-      icon: Zap,
-      titulo: "Abordagem Quântica",
-      conteudo: "Algoritmos quânticos podem explorar simultaneamente múltiplas combinações de ativos através da superposição.",
-      formula: "QAOA para otimização de portfólio"
+      id: 4,
+      icon: complexidadeIcon,
+      title: "Complexidade Computacional",
+      description: "Resolver problemas que crescem com muitos elementos.",
+      link: "/complexidade"
     }
   ];
 
-  const vantagens = [
-    {
-      icon: DollarSign,
-      titulo: "Maximização de Retorno",
-      descricao: "Algoritmos quânticos podem encontrar combinações ótimas de ativos mais rapidamente."
-    },
-    {
-      icon: PieChart,
-      titulo: "Diversificação Inteligente",
-      descricao: "Análise simultânea de milhares de correlações entre ativos."
-    },
-    {
-      icon: BarChart3,
-      titulo: "Gestão de Risco",
-      descricao: "Cálculo preciso de métricas de risco como VaR e CVaR."
-    }
-  ];
+  const totalCards = cards.length;
+
+  // 2. Lógica de Navegação SIMPLIFICADA
+  const goToNextCard = () => {
+    const newIndex = (currentCardIndex + 1) % totalCards;
+    setCurrentCardIndex(newIndex);
+  };
+
+  const goToPrevCard = () => {
+    const newIndex = (currentCardIndex - 1 + totalCards) % totalCards;
+    setCurrentCardIndex(newIndex);
+  };
+
+  const goToCard = (index) => {
+    if (index === currentCardIndex) return;
+    setCurrentCardIndex(index);
+  };
+
+  const currentCard = cards[currentCardIndex];
+
+  // 3. Classes de Animação INTERNA REMOVIDAS
+  // Apenas a classe base para transição de conteúdo do card (não da página)
+  const animationClasses = 'transition-all duration-500 ease-in-out transform opacity-100 translate-x-0';
 
   return (
-    <div className="min-h-screen text-white py-20" style={{ backgroundColor: '#111' }}>
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Otimização de Portfólio
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Distribuir investimentos para maximizar retornos e minimizar riscos
-          </p>
+    <>
+      <div className="min-h-screen text-white py-20" style={{ backgroundColor: '#111' }}>
+        {/* Header Section */}
+        <div className="fundamentos-matematicos text-center text-white mt-10 mb-12">
+          <h1 className="text-5xl font-bold mb-2">Fundamentos Matemáticos</h1>
+          <p className="text-xl">Fórmulas e conceitos matemáticos por trás da computação quântica e otimização clássica</p>
+        </div>
+
+        {/* Carrossel Container */}
+        <div className="max-w-xl mx-auto px-4 relative">
           
-          <Link 
-            to="/fundamentos"
-            className="inline-block bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+          {/* Botão de Navegação Esquerdo */}
+          <button
+            onClick={goToPrevCard}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-3 text-white bg-black/50 hover:bg-black/80 rounded-full transition-all duration-300 ml-4 hover:scale-110 active:scale-90"
+            aria-label="Card Anterior"
           >
-            Voltar aos Fundamentos
-          </Link>
-        </div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-        {/* Visualização do problema */}
-        <div className="mb-16">
-          <div className="bg-transparent rounded-lg p-8 max-w-4xl mx-auto border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Fronteira Eficiente</h2>
-            <div className="relative bg-gray-900/50 rounded-lg p-8 h-64">
-              {/* Gráfico simulado da fronteira eficiente */}
-              <div className="relative w-full h-full">
-                <svg className="absolute inset-0 w-full h-full">
-                  {/* Eixos */}
-                  <line x1="40" y1="200" x2="320" y2="200" stroke="#6b7280" strokeWidth="2"/>
-                  <line x1="40" y1="200" x2="40" y2="40" stroke="#6b7280" strokeWidth="2"/>
-                  
-                  {/* Fronteira eficiente */}
-                  <path d="M 50 180 Q 120 120 200 80 Q 250 60 300 50" 
-                        stroke="#3b82f6" strokeWidth="3" fill="none"/>
-                  
-                  {/* Pontos de portfólios */}
-                  <circle cx="80" cy="150" r="4" fill="#ef4444"/>
-                  <circle cx="120" cy="120" r="4" fill="#10b981"/>
-                  <circle cx="180" cy="90" r="4" fill="#f59e0b"/>
-                  <circle cx="240" cy="70" r="4" fill="#8b5cf6"/>
-                  
-                  {/* Labels dos eixos */}
-                  <text x="180" y="230" textAnchor="middle" fill="#9ca3af" fontSize="12">Risco (σ)</text>
-                  <text x="20" y="120" textAnchor="middle" fill="#9ca3af" fontSize="12" transform="rotate(-90 20 120)">Retorno (μ)</text>
-                </svg>
+          {/* Card Único SEM ANIMAÇÃO INTERNA, apenas o conteúdo */}
+          <div className="flex justify-center">
+            <div 
+              key={currentCard.id}
+              className={`formula-card bg-[#6A1B9A] rounded-xl p-6 flex flex-col justify-between shadow-2xl w-full max-w-md ${animationClasses}`}
+            >
+              <div className="flex flex-col items-center text-center h-full">
+                {/* Título */}
+                <h4 className="text-2xl font-bold mb-4 mt-4 min-h-[60px] flex items-center justify-center">
+                  {currentCard.title}
+                </h4>
                 
-                {/* Legenda */}
-                <div className="absolute bottom-4 right-4 bg-gray-800/80 rounded p-3 text-xs">
-                  <div className="flex items-center gap-2 mb-1">
-                    <div className="w-3 h-0.5 bg-blue-500"></div>
-                    <span>Fronteira Eficiente</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Portfólio Ótimo</span>
-                  </div>
+                {/* Ícone */}
+                <div className="w-full flex justify-center my-6">
+                  <img 
+                    src={currentCard.icon} 
+                    alt={`Ícone ${currentCard.title}`}
+                    className="w-24 h-24 object-contain"
+                  />
                 </div>
-              </div>
-            </div>
-            <p className="text-center text-gray-400 mt-4">
-              Relação entre risco e retorno na otimização de portfólio
-            </p>
-          </div>
-        </div>
-
-        {/* Conceitos principais */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
-          {conceitos.map((conceito, index) => {
-            const IconComponent = conceito.icon;
-            return (
-              <div 
-                key={index}
-                className="bg-transparent rounded-lg p-6 border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 cursor-pointer group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-purple-600/30 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/50 transition-all duration-300">
-                    <IconComponent className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors duration-300">
-                      {conceito.titulo}
-                    </h3>
-                    
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      {conceito.conteudo}
-                    </p>
-                    
-                    <div className="bg-gray-900/50 rounded p-3 font-mono text-sm text-purple-300 border border-purple-500/20 group-hover:border-purple-500/50 transition-all duration-300">
-                      {conceito.formula}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Vantagens da Abordagem Quântica */}
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-8">Vantagens da Computação Quântica</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {vantagens.map((vantagem, index) => {
-              const IconComponent = vantagem.icon;
-              return (
-                <div 
-                  key={index}
-                  className="bg-transparent rounded-lg p-6 border border-green-500/30 text-center transition-all duration-300 hover:border-green-500/60 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 cursor-pointer group"
-                >
-                  <div className="w-16 h-16 bg-green-600/30 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600/50 transition-all duration-300">
-                    <IconComponent className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors duration-300" />
-                  </div>
-                  
-                  <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-green-300 transition-colors duration-300">
-                    {vantagem.titulo}
-                  </h3>
-                  
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {vantagem.descricao}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Exemplo prático */}
-          <div className="bg-transparent rounded-lg p-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
-            <h3 className="text-2xl font-semibold text-center mb-6">Exemplo Prático</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-4 rounded-lg bg-transparent border border-blue-500/30 transition-all duration-300 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/20">
-                <h4 className="text-lg font-semibold text-blue-300 mb-3">Abordagem Clássica</h4>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Otimização quadrática: O(n³)</li>
-                  <li>• Limitado a centenas de ativos</li>
-                  <li>• Rebalanceamento lento</li>
-                  <li>• Aproximações necessárias</li>
-                </ul>
+                
+                {/* Descrição */}
+                <p className="text-gray-200 text-sm leading-relaxed mt-4 mb-6 flex-grow px-2">
+                  {currentCard.description}
+                </p>
               </div>
               
-              <div className="p-4 rounded-lg bg-transparent border border-green-500/30 transition-all duration-300 hover:border-green-500/60 hover:shadow-lg hover:shadow-green-500/20">
-                <h4 className="text-lg font-semibold text-green-300 mb-3">Abordagem Quântica</h4>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• QAOA: Exploração paralela</li>
-                  <li>• Milhares de ativos simultaneamente</li>
-                  <li>• Rebalanceamento em tempo real</li>
-                  <li>• Soluções mais precisas</li>
-                </ul>
-              </div>
+              {/* Botão "Ver Fórmula" - AGORA USA <Link> */}
+              <Link 
+                to={currentCard.link}
+                className="ver-formula-btn bg-black border-none py-3 px-6 text-white text-lg font-semibold text-center rounded-lg cursor-pointer mt-4 transition-transform duration-150 hover:bg-white hover:text-black inline-block text-decoration-none shadow-lg w-full active:scale-90"
+              >
+                Ver Fórmula
+              </Link>
             </div>
           </div>
+
+          {/* Botão de Navegação Direito */}
+          <button
+            onClick={goToNextCard}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-3 text-white bg-black/50 hover:bg-black/80 rounded-full transition-all duration-300 mr-4 hover:scale-110 active:scale-90"
+            aria-label="Próximo Card"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          
+          {/* Indicadores de Posição */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {cards.map((_, index) => (
+              <span
+                key={index}
+                className={`block h-3 w-3 rounded-full cursor-pointer transition-all duration-300 ${
+                  index === currentCardIndex ? 'bg-white scale-125' : 'bg-gray-500 hover:bg-gray-300'
+                }`}
+                onClick={() => goToCard(index)}
+                aria-label={`Ir para o Card ${index + 1}`}
+              ></span>
+            ))}
+          </div>
+
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default PortfolioPage;
+export default FundamentosPage;
