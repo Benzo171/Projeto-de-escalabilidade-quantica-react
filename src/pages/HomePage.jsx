@@ -97,21 +97,6 @@ const HomePage = () => {
 
       </section>
 
-      <section>
-        <div>
-          
-        
-         <AnimatedExploreSection
-        image={exploreImage}
-        titleText="Explore Nosso Universo"
-        buttonLink="/explore" // Defina o link do botão
-        buttonText="Lets go"
-        paragraphText="Mergulhe fundo nos conceitos que movem o mundo da tecnologia. Nossa plataforma oferece as ferramentas que você precisa para transformar curiosidade em conhecimento."
-      />
-        
-
-        </div>
-      </section>
         
     </div>
   );
