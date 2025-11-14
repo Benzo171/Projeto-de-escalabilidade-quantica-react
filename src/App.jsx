@@ -8,6 +8,7 @@ import PortfolioPage from './pages/PortfolioPage';
 import ComplexidadePage from './pages/ComplexidadePage';
 import AplicacoesPage from './pages/AplicacoesPage';
 import './App.css';
+import TspPage from './pages/TspPage';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="complexidade" element={<ComplexidadePage />} />
           <Route path="aplicacoes" element={<AplicacoesPage />} />
+          <Route path="tsp" element={<TspPage />} />
+
         </Route>
       </Routes>
     </Router>

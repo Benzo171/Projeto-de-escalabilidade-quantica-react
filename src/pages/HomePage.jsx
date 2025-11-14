@@ -85,13 +85,13 @@ const HomePage = () => {
             />
             <CategoryButton
               image={financeiroImage}
-              title="TPS"
-              linkTo="/financeiro" // Link para a página de Financeiro
+              title="TSP"
+              linkTo="/tsp" // Link para a página de Financeiro
             />
             <CategoryButton
               image={matematicaImage}
               title="Database search"
-              linkTo="/matematica" // Link para a página de Matemática
+              linkTo="/" // Link para a página de Matemática
             />
           </div>
 
