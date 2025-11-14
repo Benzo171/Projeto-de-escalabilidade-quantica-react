@@ -33,7 +33,7 @@ const HomePage = () => {
       <VideoSection />
 
     {/* --- 3. NOVA SEÇÃO (SUBSTITUINDO OS PULL-CARDS) --- */}
-      <section className="py- mt-35">
+      <section className="py-20 mt-35">
         
         {/* Bloco 1: Computação Clássica */}
         <FeatureSection
@@ -77,20 +77,20 @@ const HomePage = () => {
           </p>
         </div>
 {/* --- 3. ADICIONE O NOVO GRID DE BOTÕES AQUI --- */}
-          <div className="grid grid-cols1 md:grid-cols-3 gap-85 mt-16 md:mt-24 max-w-2xl mx-auto">
+          <div className="grid grid-cols1 md:grid-cols-3 gap-89 mt-16 md:mt-24 max-w-2xl mx-auto">
             <CategoryButton
               image={roteamentoImage}
-              title=""
+              title="Interger Factorization"
               linkTo="/roteamento" // Link para a página de Roteamento
             />
             <CategoryButton
               image={financeiroImage}
-              title=""
+              title="TPS"
               linkTo="/financeiro" // Link para a página de Financeiro
             />
             <CategoryButton
               image={matematicaImage}
-              title=""
+              title="Database search"
               linkTo="/matematica" // Link para a página de Matemática
             />
           </div>
