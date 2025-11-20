@@ -1,5 +1,5 @@
 const VideoSection = ({ 
-  title = "O futuro da tecnologia está aqui!", 
+  title = "O Futuro da Tecnologia está aqui!", 
   videoId = "SUA_ID_DO_VIDEO",
   className = ""
 }) => {
