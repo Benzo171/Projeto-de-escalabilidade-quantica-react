@@ -123,6 +123,12 @@
     scroll-behavior: smooth;
   }
   
+  body {
+    @apply bg-background text-foreground;
+    /* Alterando a fonte padrão para Josefin Sans */
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
   /* Fonte Inter */
   .font-inter {
     font-family: 'Inter', sans-serif;
