@@ -8,6 +8,8 @@ import PortfolioPage from './pages/PortfolioPage';
 import ComplexidadePage from './pages/ComplexidadePage';
 import AplicacoesPage from './pages/AplicacoesPage';
 import './App.css';
+import TspPage from './pages/TspPage';
+import RoteamentoAereo from './pages/RoteamentoAereo';
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="complexidade" element={<ComplexidadePage />} />
           <Route path="aplicacoes" element={<AplicacoesPage />} />
+          <Route path="tsp" element={<TspPage />} />
+          <Route path="roteamento-aereo" element={<RoteamentoAereo />} />
+
+
         </Route>
       </Routes>
     </Router>
