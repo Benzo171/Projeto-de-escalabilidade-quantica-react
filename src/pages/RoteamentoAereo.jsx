@@ -37,7 +37,7 @@ const getCustomColors = () => {
         classicalBorderColor: ' #A100FF',
         quantumBorderColor: ' #2a36df',
         gridLineColor: 'hsla(0, 19%, 92%, 0.1)',
-        axisTextColor: ' #535253'
+        axisTextColor: 'rgb(70, 69, 70)'
     };
 };
 
