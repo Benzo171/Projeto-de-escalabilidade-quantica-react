@@ -32,7 +32,13 @@ const FundamentosPage = () => {
       description: "Encontrar a rota mais curta que passa por toda a cidade exatamente uma vez.",
       link: "/caixeiro"
     },
-    
+    {
+      id: 2,
+      icon: qaoaIcon, 
+      title: "Algoritmo QAOA para TSP",
+      description: "Algoritmo quântico para otimização de rotas.",
+      link: "/qaoa"
+    },
     {
       id: 3,
       icon: portfolioIcon,

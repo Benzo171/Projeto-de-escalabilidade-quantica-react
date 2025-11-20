@@ -42,12 +42,12 @@ const QAOAPage = () => {
       <div className="max-w-4xl mx-auto">
         
         {/* Título e Botão Voltar em um container flex para alinhamento */}
-        <div className="flex flex-col md:flex-row md:items-center mb-12">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
           {/* Botão Voltar com Animação e Efeitos de Hover */}
           <AnimatedBlock delay={100}>
             <Link 
               to="/fundamentos" 
-              className="inline-block mb-4 md:mb-0 mr-8 bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+              className="inline-block mb-4 md:mb-0 bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
             >
               Voltar
             </Link>
@@ -55,7 +55,7 @@ const QAOAPage = () => {
 
           {/* Título com Animação */}
           <AnimatedBlock delay={0}>
-            <h1 className="text-4xl md:text-5xl font-bold text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl font-bold text-center md:text-right">
               Algoritmo QAOA para TSP
             </h1>
           </AnimatedBlock>

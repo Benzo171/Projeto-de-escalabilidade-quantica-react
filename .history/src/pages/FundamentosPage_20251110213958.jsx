@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importando Link
-import caixeiroIcon from '../assets/imgs_icones/CaixeiroViajante.png';
-import qaoaIcon from '../assets/imgs_icones/QAOA.png';
-import portfolioIcon from '../assets/imgs_icones/OtimizacaoPortfolio.png';
-import complexidadeIcon from '../assets/imgs_icones/ComplexidadeComputacional.png';
+import caixeiroIcon from './assets/imgs_icones/CaixeiroViajante.png';
+import qaoaIcon from './assets/imgs_icones/QAOA.png';
+import portfolioIcon from './assets/imgs_icones/OtimizacaoPortfolio.png';
+import complexidadeIcon from './assets/imgs_icones/ComplexidadeComputacional.png';
 
 // Chave para armazenar o índice do card no localStorage
 const STORAGE_KEY = 'currentCardIndex';
@@ -32,7 +32,13 @@ const FundamentosPage = () => {
       description: "Encontrar a rota mais curta que passa por toda a cidade exatamente uma vez.",
       link: "/caixeiro"
     },
-    
+    {
+      id: 2,
+      icon: qaoaIcon, 
+      title: "Algoritmo QAOA para TSP",
+      description: "Algoritmo quântico para otimização de rotas.",
+      link: "/qaoa"
+    },
     {
       id: 3,
       icon: portfolioIcon,
