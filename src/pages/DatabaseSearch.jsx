@@ -45,7 +45,7 @@ export default function DatabaseSearch() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-900 mb-2">
-            Busca em Banco de Dados: Clássico vs Quântico
+            Busca em Banco de Dados
           </h1>
           <p className="text-lg text-slate-600">
             Descubra como o algoritmo de Grover oferece uma aceleração quadrática em buscas

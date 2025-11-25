@@ -36,26 +36,29 @@ export default function RSAFactorization() {
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
+  // Estilo comum para os cards de resultado (Fundo cinza-azulado transparente + Borda 3px Roxa)
+  const cardStyle = "p-4 bg-slate-900/60 backdrop-blur-sm border-[1px] border-[#601EF9] rounded-lg shadow-lg";
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg- py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
-            Fatoração RSA: Clássico vs Quântico
+          <h1 className="text-4xl font-bold mb-2 text-white">
+            Fatoração RSA:
           </h1>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-300">
             Explore como o algoritmo de Shor revoluciona a criptografia ao resolver em tempo polinomial
             o que levaria eras com métodos clássicos.
           </p>
         </div>
 
         {/* Slider Control */}
-        <div className="mb-8 p-6 bg-white shadow-lg rounded-lg">
+        <div className="mb-8 p-6 bg-slate-900/80 border-[#601EF9] rounded-lg border-[2px] backdrop-blur-md">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">
-                Tamanho da Chave RSA: <span className="text-blue-600">{bitsL} bits</span>
+              <label className="block text-sm font-semibold text-white mb-2">
+                Tamanho da Chave RSA: <span className="text-[#601EF9] font-bold">{bitsL} bits</span>
               </label>
               <input
                 type="range"
@@ -64,9 +67,9 @@ export default function RSAFactorization() {
                 step="256"
                 value={bitsL}
                 onChange={(e) => setBitsL(parseInt(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#601EF9]"
               />
-              <div className="flex justify-between text-xs text-slate-500 mt-2">
+              <div className="flex text-white justify-between text-xs text-slate-400 mt-2">
                 <span>256 bits</span>
                 <span>4096 bits</span>
               </div>
@@ -78,7 +81,7 @@ export default function RSAFactorization() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Chart */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-6 h-96">
+            <div className="bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg shadow-lg p- h-125.5 backdrop-blur-sm">
               <DynamicComplexityChart
                 allLabels={allChartData.labels.map((l) => `${l}b`)}
                 allClassicalData={allChartData.classicalData}
@@ -96,19 +99,20 @@ export default function RSAFactorization() {
 
           {/* Results Panel */}
           <div className="space-y-4">
+            
             {/* Classical Results */}
-            <div className="p-4 bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg">
-              <h3 className="font-bold text-red-900 mb-3">Abordagem Clássica (GNFS)</h3>
+            <div className={cardStyle}>
+              <h3 className="font-bold text-red-300 mb-3 border-b border-red-500/30 pb-2">Abordagem Clássica (GNFS)</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-red-700 font-semibold">Operações:</p>
-                  <p className="text-red-900 font-mono break-all">
+                  <p className="text-slate-300 font-semibold">Operações:</p>
+                  <p className="text-white font-mono break-all text-xs sm:text-sm">
                     {formatScientific(classicalOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-red-700 font-semibold">Tempo Estimado:</p>
-                  <p className="text-red-900 font-mono">
+                  <p className="text-slate-300 font-semibold">Tempo Estimado:</p>
+                  <p className="text-red-200 font-mono">
                     {classicalYears > 1e9
                       ? `${(classicalYears / 1e9).toFixed(2)} bilhões de anos`
                       : classicalYears > 1e6
@@ -120,18 +124,18 @@ export default function RSAFactorization() {
             </div>
 
             {/* Quantum Results */}
-            <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg">
-              <h3 className="font-bold text-blue-900 mb-3">Abordagem Quântica (Shor)</h3>
+            <div className={cardStyle}>
+              <h3 className="font-bold text-blue-300 mb-3 border-b border-blue-500/30 pb-2">Abordagem Quântica (Shor)</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-blue-700 font-semibold">Operações:</p>
-                  <p className="text-blue-900 font-mono break-all">
+                  <p className="text-slate-300 font-semibold">Operações:</p>
+                  <p className="text-white font-mono break-all text-xs sm:text-sm">
                     {formatScientific(quantumOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-blue-700 font-semibold">Tempo Estimado:</p>
-                  <p className="text-blue-900 font-mono">
+                  <p className="text-slate-300 font-semibold">Tempo Estimado:</p>
+                  <p className="text-blue-200 font-mono">
                     {quantumYears < 0.001
                       ? `${(quantumYears * 1e6).toFixed(2)} microsegundos`
                       : quantumYears < 1
@@ -143,11 +147,11 @@ export default function RSAFactorization() {
             </div>
 
             {/* Speedup */}
-            <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg">
-              <h3 className="font-bold text-green-900 mb-3">Aceleração Quântica</h3>
+            <div className={cardStyle}>
+              <h3 className="font-bold text-green-300 mb-3 border-b border-green-500/30 pb-2">Aceleração Quântica</h3>
               <div className="space-y-2 text-sm">
-                <p className="text-green-700 font-semibold">Razão de Velocidade:</p>
-                <p className="text-green-900 font-mono text-lg">
+                <p className="text-slate-300 font-semibold">Razão de Velocidade:</p>
+                <p className="text-green-400 font-mono text-lg font-bold">
                   {formatScientific(classicalOps / quantumOps)}x mais rápido
                 </p>
               </div>
@@ -156,24 +160,23 @@ export default function RSAFactorization() {
         </div>
 
         {/* Explanation */}
-        <div className="p-6 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Entendendo a Fatoração RSA</h2>
-          <div className="space-y-4 text-slate-700">
+        <div className="p-6 bg-slate-900/80 border-[2px] border-[#601EF9] shadow-lg rounded-lg text-slate-200">
+          <h2 className="text-2xl font-bold text-white mb-4">Entendendo a Fatoração RSA</h2>
+          <div className="space-y-4">
             <p>
-              <strong>GNFS (General Number Field Sieve):</strong> O algoritmo clássico mais eficiente
+              <strong className="text-[#601EF9]">GNFS (General Number Field Sieve):</strong> O algoritmo clássico mais eficiente
               conhecido para fatoração. Sua complexidade é subexponencial em relação ao número de bits
               da chave, tornando-a impraticável para chaves grandes (RSA-2048, RSA-4096).
             </p>
             <p>
-              <strong>Algoritmo de Shor:</strong> Um algoritmo quântico que resolve fatoração em tempo
+              <strong className="text-[#601EF9]">Algoritmo de Shor:</strong> Um algoritmo quântico que resolve fatoração em tempo
               polinomial. Isso significa que um computador quântico suficientemente potente poderia
               quebrar a criptografia RSA em minutos, em vez de milhões de anos.
             </p>
             <p>
-              <strong>Implicação:</strong> A segurança da internet moderna depende da dificuldade
+              <strong className="text-[#601EF9]">Implicação:</strong> A segurança da internet moderna depende da dificuldade
               computacional de fatorar números grandes. O desenvolvimento de computadores quânticos
-              práticos tornaria a criptografia RSA obsoleta, motivando a pesquisa em criptografia
-              pós-quântica.
+              práticos tornaria a criptografia RSA obsoleta.
             </p>
           </div>
         </div>

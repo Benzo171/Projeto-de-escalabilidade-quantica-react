@@ -87,6 +87,7 @@ export default function DynamicComplexityChart({
       legend: {
         position: 'top',
         labels: {
+          color: '#ffffff', // Cor do texto da legenda
           font: { size: 12, weight: 'bold' },
           padding: 15,
           usePointStyle: true,
@@ -95,15 +96,18 @@ export default function DynamicComplexityChart({
       title: {
         display: true,
         text: title,
+        color: '#ffffff', // Cor do título do gráfico
         font: { size: 16, weight: 'bold' },
         padding: 20,
       },
       tooltip: {
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backgroundColor: 'rgba(15, 23, 42, 0.9)', // Fundo escuro (Slate 900)
+        titleColor: '#ffffff', // Cor do título do tooltip
+        bodyColor: '#e2e8f0', // Cor do texto do corpo (Slate 200)
         padding: 12,
         titleFont: { size: 13, weight: 'bold' },
         bodyFont: { size: 12 },
-        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderColor: 'rgba(96, 30, 249, 0.3)', // Borda roxa sutil no tooltip
         borderWidth: 1,
         callbacks: {
           label: (context) => {
@@ -127,10 +131,14 @@ export default function DynamicComplexityChart({
         title: {
           display: true,
           text: xAxisLabel,
+          color: '#ffffff', // Cor do título do eixo X
           font: { size: 12, weight: 'bold' },
         },
+        ticks: {
+          color: '#cbd5e1', // Cor dos números do eixo X (Slate 300)
+        },
         grid: {
-          color: 'rgba(0, 0, 0, 0.05)',
+          color: 'rgba(255, 255, 255, 0.1)', // Linhas de grade brancas transparentes
         },
       },
       y: {
@@ -138,17 +146,22 @@ export default function DynamicComplexityChart({
         title: {
           display: true,
           text: yAxisLabel,
+          color: '#ffffff', // Cor do título do eixo Y
           font: { size: 12, weight: 'bold' },
         },
+        ticks: {
+          color: '#cbd5e1', // Cor dos números do eixo Y (Slate 300)
+        },
         grid: {
-          color: 'rgba(0, 0, 0, 0.05)',
+          color: 'rgba(255, 255, 255, 0.1)', // Linhas de grade brancas transparentes
         },
       },
     },
   };
 
   return (
-    <div className="w-full h-full bg-white rounded-lg shadow-md p-4">
+    // Removi bg-[] e coloquei bg-transparent para usar o fundo do card pai
+    <div className="w-full h-full bg-transparent rounded-lg p-2">
       <Line data={data} options={options} />
     </div>
   );
