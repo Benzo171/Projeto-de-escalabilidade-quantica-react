@@ -10,6 +10,8 @@ import AplicacoesPage from './pages/AplicacoesPage';
 import './App.css';
 import TspPage from './pages/TspPage';
 import RoteamentoAereo from './pages/RoteamentoAereo';
+import RSAFactorization from './pages/RSAFactorization';
+import DatabaseSearch from './pages/DatabaseSearch';
 
 function App() {
   return (
@@ -25,8 +27,8 @@ function App() {
           <Route path="aplicacoes" element={<AplicacoesPage />} />
           <Route path="tsp" element={<TspPage />} />
           <Route path="roteamento-aereo" element={<RoteamentoAereo />} />
-
-
+          <Route path="/rsa" element={<RSAFactorization />} />
+          <Route path="/database-search" element={<DatabaseSearch />} />
         </Route>
       </Routes>
     </Router>
