@@ -18,7 +18,7 @@ ChartJS.register(
 // -------------------------------------------------------------------
 // 1. CONFIGURAÇÃO DO BACKGROUND
 // Use um placeholder genérico relacionado a tecnologia/dados por enquanto.
-const BACKGROUND_IMAGE_URL = 'https://images.unsplash.com/photo-1518770660439-46361909873d?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; 
+const BACKGROUND_IMAGE_URL = 'src/assets/imagens/image 66.png'; 
 // -------------------------------------------------------------------
 
 // --- Funções de Lógica ---
@@ -351,10 +351,10 @@ const RoteamentoAereoTailwind = () => {
         >
             
             {/* content-wrapper - AGORA COM BACKGROUND ESCURO PARA GARANTIR VISIBILIDADE */}
-            <div className="relative z-10 w-full flex flex-col min-h-screen bg-gray-900/95 rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
+            <div className="relative z-10 w-full flex flex-col min-h-screen bg-gray 10000/95 rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
                 
                 <header className="flex justify-center p-4">
-                    <h1 className="text-center w-full text-purple-400 text-4xl sm:text-6xl font-extrabold tracking-wider">
+                    <h1 className="text-center w-full text-purple-600 text-4xl sm:text-6xl font-extrabold tracking-wider">
                         <span className="line-1">TSP </span>
                     </h1>
                 </header>
@@ -363,7 +363,7 @@ const RoteamentoAereoTailwind = () => {
                 <main className="flex flex-col items-center w-full mx-auto p-0 flex-grow">
                     
                     {/* text-box */}
-                    <div className="w-[90%] max-w-[800px] p-4 border-2 border-indigo-500 rounded-xl bg-gray-900/90 text-white text-base sm:text-lg text-center mt-6 shadow-2xl backdrop-blur-sm">
+                    <div className="w-[90%] max-w-[800px] p-4 border-2 border-purple-600 rounded-xl bg-gray-900/90 text-white text-base sm:text-lg text-center mt-6 shadow-2xl backdrop-blur-sm">
                         <p className="font-light">
                         Companhias Aéreas precisam definir a melhor rota para cobrir diversos aeroportos em um único trajeto, minimizando o tempo de voo e os custos de operação. </p>
                     </div>
@@ -372,10 +372,10 @@ const RoteamentoAereoTailwind = () => {
                     <div className="w-full max-w-[1000px] mx-auto my-8 font-['Inter',_sans-serif]">
                         
                         {/* airport-simulation-container */}
-                        <div className="flex flex-col lg:flex-row bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-indigo-700">
+                        <div className="flex flex-col lg:flex-row bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-purple-600">
                             
                             {/* airport-simulation-area */}
-                            <div className="flex-2 p-6 border-b lg:border-b-0 lg:border-r border-indigo-800 flex flex-col items-center justify-center min-h-[350px]">
+                            <div className="flex-2 p-6 border-b lg:border-b-0 lg:border-r border-purple-600 flex flex-col items-center justify-center min-h-[350px]">
                                 <h3 className="text-gray-100 mb-5 text-xl font-semibold">Simulação de Rotas ({numAirports} Aeroportos)</h3>
                                 
                                 {/* airport-visualization-sim */}
