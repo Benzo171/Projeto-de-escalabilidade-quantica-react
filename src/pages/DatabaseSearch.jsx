@@ -7,10 +7,45 @@ import {
   estimateTimeInYears,
 } from '../util/complexityCalculations';
 
+// Função para converter números em linguagem comum
+function formatNumberSimple(num) {
+  if (num >= 1e18) return `${(num / 1e18).toFixed(1)} quintilhões`;
+  if (num >= 1e15) return `${(num / 1e15).toFixed(1)} quadrilhões`;
+  if (num >= 1e12) return `${(num / 1e12).toFixed(1)} trilhões`;
+  if (num >= 1e9) return `${(num / 1e9).toFixed(1)} bilhões`;
+  if (num >= 1e6) return `${(num / 1e6).toFixed(1)} milhões`;
+  if (num >= 1e3) return `${(num / 1e3).toFixed(1)} mil`;
+  return num.toFixed(0);
+}
+
+// Função para converter tempo em linguagem comum
+function formatTimeSimple(years) {
+  if (years > 1e9) return `${(years / 1e9).toFixed(1)} bilhões de anos`;
+  if (years > 1e6) return `${(years / 1e6).toFixed(1)} milhões de anos`;
+  if (years > 1000) return `${(years / 1000).toFixed(1)} mil anos`;
+  if (years > 1) return `${years.toFixed(1)} anos`;
+  
+  const days = years * 365.25;
+  if (days > 1) return `${days.toFixed(1)} dias`;
+  
+  const hours = days * 24;
+  if (hours > 1) return `${hours.toFixed(1)} horas`;
+  
+  const minutes = hours * 60;
+  if (minutes > 1) return `${minutes.toFixed(1)} minutos`;
+  
+  const seconds = minutes * 60;
+  if (seconds > 1) return `${seconds.toFixed(1)} segundos`;
+  
+  const ms = seconds * 1000;
+  if (ms > 1) return `${ms.toFixed(1)} milissegundos`;
+  
+  return `${(ms * 1000).toFixed(1)} microsegundos`;
+}
+
 export default function DatabaseSearch() {
   const [exponent, setExponent] = useState(12);
   const databaseSize = Math.pow(10, exponent);
-  const [useLogScale, setUseLogScale] = useState(true);
 
   // Gera todos os dados possíveis
   const allChartData = useMemo(() => {
@@ -30,7 +65,7 @@ export default function DatabaseSearch() {
 
   // Encontra o índice correspondente ao valor atual do slider
   const currentIndex = useMemo(() => {
-    return exponent - 2; // Começa em 10^2, então índice = exponent - 2
+    return exponent - 2;
   }, [exponent]);
 
   // Calcula valores para o slider atual
@@ -39,17 +74,44 @@ export default function DatabaseSearch() {
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
+  // Labels simplificados para o gráfico
+  const simpleLabels = allChartData.labels.map((n) => {
+    if (n === 100) return "100";
+    if (n === 1000) return "1 mil";
+    if (n === 1e6) return "1 milhão";
+    if (n === 1e9) return "1 bilhão";
+    if (n === 1e12) return "1 trilhão";
+    if (n === 1e15) return "1 quadrilhão";
+    if (n === 1e18) return "1 quintilhão";
+    return formatNumberSimple(n);
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg- from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
-            Busca em Banco de Dados: Clássico vs Quântico
+          <h1 className="text-4xl font-bold text-white mb-2">
+            Procurando um Nome em um Banco de Dados Gigante
           </h1>
-          <p className="text-lg text-slate-600">
-            Descubra como o algoritmo de Grover oferece uma aceleração quadrática em buscas
-            não estruturadas, mesmo em bancos de dados gigantescos.
+          <p className="text-lg text-white">
+            Imagine que você precisa encontrar uma pessoa específica em um banco de dados enorme.
+            Veja como um computador quântico pode fazer isso muito mais rápido que um computador normal.
+          </p>
+        </div>
+
+        {/* Context Example */}
+        <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+          <h3 className="font-bold text-blue-900 mb-2">📱 Exemplo do Dia a Dia:</h3>
+          <p className="text-blue-800 mb-3">
+            Você tem um banco de dados com <strong>1 trilhão de nomes</strong> de clientes (sem organização).
+            Precisa encontrar "Maria Silva". 
+          </p>
+          <p className="text-blue-800">
+            <strong>Computador normal:</strong> Verifica cada nome um por um. Pode levar bilhões de anos! 😱
+          </p>
+          <p className="text-blue-800 mt-2">
+            <strong>Computador quântico:</strong> Usa um truque especial para encontrar muito mais rápido. Em segundos! ⚡
           </p>
         </div>
 
@@ -58,8 +120,11 @@ export default function DatabaseSearch() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">
-                Tamanho do Banco de Dados: <span className="text-blue-600">10^{exponent}</span> itens
+                Quantos nomes no banco de dados?
               </label>
+              <p className="text-2xl font-bold text-blue-600 mb-3">
+                {formatNumberSimple(databaseSize)} nomes
+              </p>
               <input
                 type="range"
                 min="2"
@@ -70,25 +135,9 @@ export default function DatabaseSearch() {
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
               <div className="flex justify-between text-xs text-slate-500 mt-2">
-                <span>10² (100)</span>
-                <span>10^18 (1 Exabyte)</span>
+                <span>100 nomes</span>
+                <span>1 quintilhão de nomes</span>
               </div>
-            </div>
-
-            {/* Scale Toggle */}
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={useLogScale}
-                  onChange={(e) => setUseLogScale(e.target.checked)}
-                  className="w-4 h-4 rounded accent-blue-600"
-                />
-                <span className="text-sm font-medium text-slate-700">Usar escala logarítmica</span>
-              </label>
-              <p className="text-xs text-slate-500 ml-auto">
-                (Recomendado para visualizar a diferença)
-              </p>
             </div>
           </div>
         </div>
@@ -99,19 +148,16 @@ export default function DatabaseSearch() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-lg p-6 h-96">
               <DynamicComplexityChart
-                allLabels={allChartData.labels.map((n) => {
-                  const exp = Math.log10(n);
-                  return `10^${exp.toFixed(0)}`;
-                })}
+                allLabels={simpleLabels}
                 allClassicalData={allChartData.classicalData}
                 allQuantumData={allChartData.quantumData}
                 currentIndex={currentIndex}
-                classicalLabel="Busca Linear (Clássico)"
-                quantumLabel="Grover (Quântico)"
-                xAxisLabel="Tamanho do Banco de Dados"
-                yAxisLabel={useLogScale ? "Operações (log scale)" : "Operações"}
-                useLogScale={useLogScale}
-                title="Complexidade de Busca em Banco de Dados"
+                classicalLabel="Computador Normal"
+                quantumLabel="Computador Quântico"
+                xAxisLabel="Quantidade de Nomes"
+                yAxisLabel="Verificações Necessárias"
+                useLogScale={false}
+                title="Tempo para Encontrar um Nome"
               />
             </div>
           </div>
@@ -120,22 +166,18 @@ export default function DatabaseSearch() {
           <div className="space-y-4">
             {/* Classical Results */}
             <div className="p-4 bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg">
-              <h3 className="font-bold text-red-900 mb-3">Busca Linear (Clássico)</h3>
+              <h3 className="font-bold text-red-900 mb-3">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-red-700 font-semibold">Operações:</p>
+                  <p className="text-red-700 font-semibold">Verificações:</p>
                   <p className="text-red-900 font-mono break-all">
-                    {formatScientific(classicalOps)}
+                    {formatNumberSimple(classicalOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-red-700 font-semibold">Tempo Estimado:</p>
+                  <p className="text-red-700 font-semibold">Tempo para encontrar:</p>
                   <p className="text-red-900 font-mono">
-                    {classicalYears > 1e6
-                      ? `${(classicalYears / 1e6).toFixed(2)}M anos`
-                      : classicalYears > 1
-                        ? `${classicalYears.toFixed(2)} anos`
-                        : `${(classicalYears * 365.25).toFixed(2)} dias`}
+                    {formatTimeSimple(classicalYears)}
                   </p>
                 </div>
               </div>
@@ -143,22 +185,18 @@ export default function DatabaseSearch() {
 
             {/* Quantum Results */}
             <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg">
-              <h3 className="font-bold text-blue-900 mb-3">Grover (Quântico)</h3>
+              <h3 className="font-bold text-blue-900 mb-3">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-blue-700 font-semibold">Operações:</p>
+                  <p className="text-blue-700 font-semibold">Verificações:</p>
                   <p className="text-blue-900 font-mono break-all">
-                    {formatScientific(quantumOps)}
+                    {formatNumberSimple(quantumOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-blue-700 font-semibold">Tempo Estimado:</p>
+                  <p className="text-blue-700 font-semibold">Tempo para encontrar:</p>
                   <p className="text-blue-900 font-mono">
-                    {quantumYears < 0.001
-                      ? `${(quantumYears * 1e9).toFixed(2)}ns`
-                      : quantumYears < 1
-                        ? `${(quantumYears * 1e6).toFixed(2)}µs`
-                        : `${quantumYears.toFixed(2)}s`}
+                    {formatTimeSimple(quantumYears)}
                   </p>
                 </div>
               </div>
@@ -166,14 +204,14 @@ export default function DatabaseSearch() {
 
             {/* Speedup */}
             <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg">
-              <h3 className="font-bold text-green-900 mb-3">Aceleração Quântica</h3>
+              <h3 className="font-bold text-green-900 mb-3">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
-                <p className="text-green-700 font-semibold">Razão de Velocidade:</p>
+                <p className="text-green-700 font-semibold">Velocidade:</p>
                 <p className="text-green-900 font-mono text-lg">
-                  {formatScientific(classicalOps / quantumOps)}x mais rápido
+                  {formatNumberSimple(classicalOps / quantumOps)}x
                 </p>
                 <p className="text-green-700 text-xs mt-2">
-                  (Aceleração quadrática: √N)
+                  O quântico é essa quantidade de vezes mais rápido!
                 </p>
               </div>
             </div>
@@ -183,27 +221,25 @@ export default function DatabaseSearch() {
         {/* Explanation */}
         <div className="p-6 bg-white shadow-lg rounded-lg">
           <h2 className="text-2xl font-bold text-slate-900 mb-4">
-            Entendendo a Busca com Grover
+            Por que o Computador Quântico é Tão Mais Rápido?
           </h2>
           <div className="space-y-4 text-slate-700">
             <p>
-              <strong>Busca Linear (Clássico):</strong> Para encontrar um item específico em um banco
-              de dados não ordenado, você precisa verificar cada item um por um. No pior caso, isso
-              requer N operações para um banco com N itens.
+              <strong>Computador Normal:</strong> Procura verificando cada nome, um por um.
+              Se tem 1 bilhão de nomes, pode precisar verificar até 1 bilhão de vezes. Muito lento!
             </p>
             <p>
-              <strong>Algoritmo de Grover:</strong> Um algoritmo quântico que explora a
-              superposição e interferência quântica para buscar em tempo O(√N). Isso oferece uma
-              aceleração quadrática em relação aos métodos clássicos.
+              <strong>Computador Quântico:</strong> Usa um truque especial da física quântica.
+              Em vez de verificar um por um, ele verifica vários ao mesmo tempo (superposição).
+              Para 1 bilhão de nomes, precisa de apenas ~31.622 verificações. Incrível!
             </p>
             <p>
-              <strong>Aplicações Práticas:</strong> Busca em bancos de dados, quebra de hashes,
-              otimização combinatória. Mesmo com a aceleração quadrática, ainda é menos dramático
-              que o algoritmo de Shor, mas oferece melhorias significativas em problemas de busca.
+              <strong>Onde isso é útil?</strong> Em bancos de dados de clientes, registros médicos,
+              listas de pessoas desaparecidas, ou qualquer lugar onde você precisa encontrar alguém rapidamente.
             </p>
             <p>
-              <strong>Nota:</strong> Use a escala logarítmica para visualizar melhor a diferença
-              entre as duas abordagens em bancos de dados muito grandes.
+              <strong>Por que "sem organização"?</strong> Se o banco tivesse um índice (como um índice de livro),
+              seria rápido mesmo no computador normal. Mas aqui não tem índice, então tem que verificar tudo.
             </p>
           </div>
         </div>
