@@ -338,20 +338,13 @@ const RoteamentoAereoTailwind = () => {
     };
 
     return (
-        // APLICANDO O BACKGROUND DA HOMEPAGE AQUI:
+        // Fundo alinhado com as outras páginas internas (preto sólido)
         <div 
-            className="min-h-screen text-white p-4 sm:p-8 font-['Inter',_sans-serif]"
-            style={{
-                backgroundImage: `url('${BACKGROUND_IMAGE_URL}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundAttachment: 'fixed', // Efeito Parallax
-                backgroundColor: '#1f2937' // Cor sólida de fallback se a imagem falhar (gray-800)
-            }}
+            className="min-h-screen bg-black text-white p-4 sm:p-8 font-['Inter',_sans-serif]"
         >
             
-            {/* content-wrapper - AGORA COM BACKGROUND ESCURO PARA GARANTIR VISIBILIDADE */}
-            <div className="relative z-10 w-full flex flex-col min-h-screen bg-gray 10000/95 rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
+            {/* content-wrapper */}
+            <div className="relative z-10 w-full flex flex-col min-h-screen rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
                 
                 <header className="flex justify-center p-4">
                     <h1 className="text-center w-full text-purple-600 text-4xl sm:text-6xl font-extrabold tracking-wider">

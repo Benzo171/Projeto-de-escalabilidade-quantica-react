@@ -64,7 +64,7 @@ const ComplexidadePage = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white py-20 px-6" style={{ backgroundColor: '#111' }}>
+    <div className="min-h-screen text-white py-20 px-6 bg-black">
       <div className="max-w-6xl mx-auto">
         
         {/* Botão Voltar */}
