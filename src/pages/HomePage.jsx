@@ -81,7 +81,7 @@ const HomePage = () => {
             <CategoryButton
               image={roteamentoImage}
               title="Interger Factorization"
-              linkTo="/tsp" // Link para a página de Roteamento
+              linkTo="/rsa" // Link para a página de Roteamento
             />
             <CategoryButton
               image={financeiroImage}
@@ -91,7 +91,7 @@ const HomePage = () => {
             <CategoryButton
               image={matematicaImage}
               title="Database search"
-              linkTo="/" // Link para a página de database search
+              linkTo="/database-search" // Link para a página de database search
             />
           </div>
 
