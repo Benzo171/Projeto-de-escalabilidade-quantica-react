@@ -41,29 +41,26 @@ const QAOAPage = () => {
     <div className="min-h-screen text-white py-20 px-6" style={{ backgroundColor: '#111' }}>
       <div className="max-w-4xl mx-auto">
         
-        {/* Título e Botão Voltar em um container flex para alinhamento */}
-        <div className="flex flex-col md:flex-row md:items-center mb-12">
+        {/* Título com Animação */}
+        <AnimatedBlock delay={0}>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Algoritmo QAOA para TSP
+          </h1>
+        </AnimatedBlock>
+
+        {/* Container Principal */}
+        <div className="bg-[#6A1B9A] rounded-2xl p-8 space-y-8">
+          
           {/* Botão Voltar com Animação e Efeitos de Hover */}
           <AnimatedBlock delay={100}>
             <Link 
               to="/fundamentos" 
-              className="inline-block mb-4 md:mb-0 mr-8 bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+              className="inline-block bg-[#6A1B9A] hover:bg-[#7B2BAA] text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
             >
               Voltar
             </Link>
           </AnimatedBlock>
 
-          {/* Título com Animação */}
-          <AnimatedBlock delay={0}>
-            <h1 className="text-4xl md:text-5xl font-bold text-center md:text-left">
-              Algoritmo QAOA para TSP
-            </h1>
-          </AnimatedBlock>
-        </div>
-
-        {/* Container Principal Removido - Adicionando espaçamento entre os blocos */}
-        <div className="space-y-8">
-          
           {/* BLOCO 1: Hamiltoniano de Custo - Adicionando Efeitos de Hover */}
           <AnimatedBlock delay={200}>
             <div className="bg-gray-900/50 rounded-xl p-6 flex flex-col md:flex-row items-start gap-6 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 group">
