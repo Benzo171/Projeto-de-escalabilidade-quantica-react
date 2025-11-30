@@ -165,18 +165,18 @@ export default function DatabaseSearch() {
           {/* Results Panel */}
           <div className="space-y-4">
             {/* Classical Results */}
-            <div className="p-4 bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg">
-              <h3 className="font-bold text-red-900 mb-3">💻 Computador Normal</h3>
+            <div className="p-4 bg-slate-900/80 border-[2px] border-[#601EF9] rounded-lg">
+              <h3 className="font-bold text-white mb-3">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-red-700 font-semibold">Verificações:</p>
-                  <p className="text-red-900 font-mono break-all">
+                  <p className="text-white font-bold">Verificações:</p>
+                  <p className="text-white font-mono break-all">
                     {formatNumberSimple(classicalOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-red-700 font-semibold">Tempo para encontrar:</p>
-                  <p className="text-red-900 font-mono">
+                  <p className="text-white font-bold">Tempo para encontrar:</p>
+                  <p className="text-white font-mono">
                     {formatTimeSimple(classicalYears)}
                   </p>
                 </div>
@@ -184,18 +184,18 @@ export default function DatabaseSearch() {
             </div>
 
             {/* Quantum Results */}
-            <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg">
-              <h3 className="font-bold text-blue-900 mb-3">⚡ Computador Quântico</h3>
+            <div className="p-4 bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg">
+              <h3 className="font-bold text-white mb-3">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <p className="text-blue-700 font-semibold">Verificações:</p>
-                  <p className="text-blue-900 font-mono break-all">
+                  <p className="text-white font-semibold">Verificações:</p>
+                  <p className="text-white font-mono break-all">
                     {formatNumberSimple(quantumOps)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-blue-700 font-semibold">Tempo para encontrar:</p>
-                  <p className="text-blue-900 font-mono">
+                  <p className="text-white font-semibold">Tempo para encontrar:</p>
+                  <p className="text-white font-mono">
                     {formatTimeSimple(quantumYears)}
                   </p>
                 </div>
@@ -203,14 +203,14 @@ export default function DatabaseSearch() {
             </div>
 
             {/* Speedup */}
-            <div className="p-4 bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg">
-              <h3 className="font-bold text-green-900 mb-3">🚀 Quanto Mais Rápido?</h3>
+            <div className="p-4 bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg">
+              <h3 className="font-bold text-[#008000] mb-3">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
-                <p className="text-green-700 font-semibold">Velocidade:</p>
-                <p className="text-green-900 font-mono text-lg">
+                <p className="text-[#008000] font-semibold">Velocidade:</p>
+                <p className="text-[#008000] font-mono text-lg">
                   {formatNumberSimple(classicalOps / quantumOps)}x
                 </p>
-                <p className="text-green-700 text-xs mt-2">
+                <p className="text-[#008000] text-xs mt-2">
                   O quântico é essa quantidade de vezes mais rápido!
                 </p>
               </div>
@@ -219,11 +219,11 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Explanation */}
-        <div className="p-6 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+        <div className="p-6 bg-slate-900/40 border-[2px] border-[#601EF9] shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-white mb-4">
             Por que o Computador Quântico é Tão Mais Rápido?
           </h2>
-          <div className="space-y-4 text-slate-700">
+          <div className="space-y-4 text-white">
             <p>
               <strong>Computador Normal:</strong> Procura verificando cada nome, um por um.
               Se tem 1 bilhão de nomes, pode precisar verificar até 1 bilhão de vezes. Muito lento!
