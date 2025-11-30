@@ -145,8 +145,8 @@ export default function DatabaseSearch() {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Chart */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-6 h-96">
+          <div className="lg:col-span-2 ">
+            <div className="bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg shadow-lg p- h-125.5 backdrop-blur-sm rounded-lg shadow-lg p-6 h-96">
               <DynamicComplexityChart
                 allLabels={simpleLabels}
                 allClassicalData={allChartData.classicalData}
