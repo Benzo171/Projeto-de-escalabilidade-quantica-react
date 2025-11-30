@@ -101,25 +101,25 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Context Example */}
-        <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
-          <h3 className="font-bold text-blue-900 mb-2">📱 Exemplo do Dia a Dia:</h3>
-          <p className="text-blue-800 mb-3">
+        <div className="mb-8 p-6 p-6 bg-slate-900/80 border-[2px] border-[#601EF9] shadow-lg rounded-lg text-white">
+          <h3 className="font-bold text- mb-2">📱 Exemplo do Dia a Dia:</h3>
+          <p className="text- mb-3">
             Você tem um banco de dados com <strong>1 trilhão de nomes</strong> de clientes (sem organização).
             Precisa encontrar "Maria Silva". 
           </p>
-          <p className="text-blue-800">
+          <p className="text-white">
             <strong>Computador normal:</strong> Verifica cada nome um por um. Pode levar bilhões de anos! 😱
           </p>
-          <p className="text-blue-800 mt-2">
+          <p className="text-white mt-2">
             <strong>Computador quântico:</strong> Usa um truque especial para encontrar muito mais rápido. Em segundos! ⚡
           </p>
         </div>
 
         {/* Slider Control */}
-        <div className="mb-8 p-6 bg-white shadow-lg rounded-lg">
+        <div className="mb-8 p-6 bg-slate-900/80 border-[2px] border-[#601EF9] shadow-lg rounded-lg">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">
+              <label className="block text-sm font-semibold text-white mb-2">
                 Quantos nomes no banco de dados?
               </label>
               <p className="text-2xl font-bold text-blue-600 mb-3">
@@ -134,7 +134,7 @@ export default function DatabaseSearch() {
                 onChange={(e) => setExponent(parseInt(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
-              <div className="flex justify-between text-xs text-slate-500 mt-2">
+              <div className="flex justify-between text-xs text-white mt-2">
                 <span>100 nomes</span>
                 <span>1 quintilhão de nomes</span>
               </div>
