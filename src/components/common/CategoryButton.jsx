@@ -15,7 +15,6 @@ const CategoryButton = ({ image, title, linkTo = '#' }) => {
         <img 
           src={image} 
           alt={title} 
-          
           className="w-full h-auto"
         />
       </div>

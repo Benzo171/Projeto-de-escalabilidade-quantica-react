@@ -33,7 +33,7 @@ const HomePage = () => {
       <VideoSection />
 
     {/* --- 3. NOVA SEÇÃO (SUBSTITUINDO OS PULL-CARDS) --- */}
-      <section className="py- mt-3">
+      <section className="py-20 mt-35">
         
         {/* Bloco 1: Computação Clássica */}
         <FeatureSection

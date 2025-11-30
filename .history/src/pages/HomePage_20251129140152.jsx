@@ -9,7 +9,7 @@ import roteamentoImage from '../assets/imagens/CARD_ROTEAMENTO.png';
 import financeiroImage from '../assets/imagens/CARD_FINANCEIRO.png';
 import matematicaImage from '../assets/imagens/CARD_MATEMATICA.png';
 import exploreImage from '../assets/imagens/image-142.png';
-import AnimatedExploreSection from '../components/common/AnimatedExploreSection';
+import AnimatedExploreSection from '../components/common/AnimatedExploreSection';b
 import { Link } from 'react-router-dom';`
 `
 const HomePage = () => {
@@ -33,7 +33,7 @@ const HomePage = () => {
       <VideoSection />
 
     {/* --- 3. NOVA SEÇÃO (SUBSTITUINDO OS PULL-CARDS) --- */}
-      <section className="py- mt-3">
+      <section className="py-20 mt-35">
         
         {/* Bloco 1: Computação Clássica */}
         <FeatureSection
