@@ -7,6 +7,9 @@ import QAOAPage from './pages/QAOAPage';
 import PortfolioPage from './pages/PortfolioPage';
 import ComplexidadePage from './pages/ComplexidadePage';
 import AplicacoesPage from './pages/AplicacoesPage';
+import ClassicaPage from './pages/ClassicaPage';
+import QuanticaPage from './pages/QuanticaPage';
+import CoexistenciaPage from './pages/CoexistenciaPage';
 import './App.css';
 import TspPage from './pages/TspPage';
 import RoteamentoAereo from './pages/RoteamentoAereo';
@@ -25,10 +28,13 @@ function App() {
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="complexidade" element={<ComplexidadePage />} />
           <Route path="aplicacoes" element={<AplicacoesPage />} />
+          <Route path="classica" element={<ClassicaPage />} />
+          <Route path="quantica" element={<QuanticaPage />} />
+          <Route path="coexistencia" element={<CoexistenciaPage />} />
           <Route path="tsp" element={<TspPage />} />
           <Route path="roteamento-aereo" element={<RoteamentoAereo />} />
-          <Route path="/rsa" element={<RSAFactorization />} />
-          <Route path="/database-search" element={<DatabaseSearch />} />
+          <Route path="rsa" element={<RSAFactorization />} />
+          <Route path="database-search" element={<DatabaseSearch />} />
         </Route>
       </Routes>
     </Router>

@@ -41,7 +41,7 @@ const HomePage = () => {
           image={aiImage}
           title="Computação Clássica: Precisão e Lógica Determinística"
           description="A computação clássica processa informações usando bits, representados por 0 e 1. Essa lógica binária permite resolver tarefas com alta precisão e previsibilidade, ideal para cálculos sequenciais e operações diretas. É a base dos sistemas atuais, garantindo estabilidade, controle e eficiência em rotinas de processamento tradicionais."
-          linkTo=""
+          linkTo="/classica"
         />
 
         {/* Bloco 2: Computação Quântica */}
@@ -49,8 +49,8 @@ const HomePage = () => {
           imageSide="right"
           image={neurotechImage}
           title="Computação Quântica: Paralelismo e Revolução Tecnológica"
-          description="A computação quântica utiliza qubits, capazes de representar 0 e 1 simultaneamente, permitindo processar diversas possibilidades ao mesmo tempo. Essa capacidade oferece ganhos enormes em velocidade e eficiência, especialmente em problemas complexos como otimização de rotas, finanças e simulações. Uma tecnologia em rápido evolução que promete transformar o futuro do processamento de dados."
-          linkTo=""
+          description="A computação quântica utiliza qubits, capazes de representar 0 e 1 simultaneamente, permitindo processar diversas possibilidades ao mesmo tempo. Essa capacidade oferece ganhos enormes em velocidade e eficiência, especialmente em problemas complexos como otimização de rotas, finanças e simulações. Uma tecnologia em rápida evolução que promete transformar o futuro do processamento de dados."
+          linkTo="/quantica"
         />
 
         {/* Bloco 3: Clássica vs Quântica */}
@@ -59,7 +59,7 @@ const HomePage = () => {
           image={metaversoImage}
           title="Computação Clássica vs Computação Quântica"
           description="Enquanto a computação clássica trabalha com bits (0 ou 1) e oferece estabilidade e precisão em tarefas sequenciais, a computação quântica utiliza qubits, que podem representar 0 e 1 ao mesmo tempo. Isso permite explorar múltiplas soluções simultaneamente, trazendo velocidade e eficiência para desafios complexos. Juntas, representam o equilíbrio entre confiabilidade tradicional e inovação futura."
-          linkTo=""
+          linkTo="/coexistencia"
         />
 
       </section>
