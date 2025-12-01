@@ -124,7 +124,7 @@ export default function RSAFactorization() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Chart */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-900/60 border border-purple-500/30 rounded-2xl shadow-lg p-6 h-96 backdrop-blur-sm">
+            <div className="bg-gray-900/60 border  border-purple-500/30 rounded-2xl shadow-lg p- h-140.5 pt-15 backdrop-blur-sm">
               <DynamicComplexityChart
                 allLabels={allChartData.labels.map((l) => `${l}b`)}
                 allClassicalData={allChartData.classicalData}
