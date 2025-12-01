@@ -87,7 +87,7 @@ export default function DatabaseSearch() {
   });
 
   return (
-    <div className="min-h-screen bg- from-slate-50 to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -101,7 +101,7 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Context Example */}
-        <div className="mb-8 p-6 p-6 bg-slate-900/80 border-[2px] border-[#601EF9] shadow-lg rounded-lg text-white">
+        <div className="mb-8 p-6 bg-gray-900/80 border border-purple-500/30 shadow-lg rounded-2xl text-white transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <h3 className="font-bold text- mb-2">📱 Exemplo do Dia a Dia:</h3>
           <p className="text- mb-3">
             Você tem um banco de dados com <strong>1 trilhão de nomes</strong> de clientes (sem organização).
@@ -116,13 +116,13 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Slider Control */}
-        <div className="mb-8 p-6 bg-slate-900/80 border-[2px] border-[#601EF9] shadow-lg rounded-lg">
+        <div className="mb-8 p-6 bg-gray-900/80 border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-white mb-2">
                 Quantos nomes no banco de dados?
               </label>
-              <p className="text-2xl font-bold text-blue-600 mb-3">
+              <p className="text-2xl font-bold text-[#C4A1FF] mb-3">
                 {formatNumberSimple(databaseSize)} nomes
               </p>
               <input
@@ -146,7 +146,7 @@ export default function DatabaseSearch() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Chart */}
           <div className="lg:col-span-2 ">
-            <div className="bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg shadow-lg p- h-125.5 backdrop-blur-sm rounded-lg shadow-lg p-6 h-96">
+            <div className="bg-gray-900/60 border border-purple-500/30 rounded-2xl shadow-lg backdrop-blur-sm p-6 h-96">
               <DynamicComplexityChart
                 allLabels={simpleLabels}
                 allClassicalData={allChartData.classicalData}
@@ -165,8 +165,8 @@ export default function DatabaseSearch() {
           {/* Results Panel */}
           <div className="space-y-4">
             {/* Classical Results */}
-            <div className="p-4 bg-slate-900/80 border-[2px] border-[#601EF9] rounded-lg">
-              <h3 className="font-bold text-white mb-3">💻 Computador Normal</h3>
+            <div className="p-4 bg-gray-900/80 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
+              <h3 className="font-bold text-[#E0C3FF] mb-3">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-white font-bold">Verificações:</p>
@@ -184,8 +184,8 @@ export default function DatabaseSearch() {
             </div>
 
             {/* Quantum Results */}
-            <div className="p-4 bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg">
-              <h3 className="font-bold text-white mb-3">⚡ Computador Quântico</h3>
+            <div className="p-4 bg-gray-900/60 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
+              <h3 className="font-bold text-[#C4A1FF] mb-3">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-white font-semibold">Verificações:</p>
@@ -203,11 +203,11 @@ export default function DatabaseSearch() {
             </div>
 
             {/* Speedup */}
-            <div className="p-4 bg-slate-900/40 border-[2px] border-[#601EF9] rounded-lg">
-              <h3 className="font-bold text-[#008000] mb-3">🚀 Quanto Mais Rápido?</h3>
+            <div className="p-4 bg-gray-900/60 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
+              <h3 className="font-bold text-[#F5E1FF] mb-3">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
-                <p className="text-[#008000] font-semibold">Velocidade:</p>
-                <p className="text-[#008000] font-mono text-lg">
+                <p className="text-[#C4A1FF] font-semibold">Velocidade:</p>
+                <p className="text-[#C4A1FF] font-mono text-lg">
                   {formatNumberSimple(classicalOps / quantumOps)}x
                 </p>
                 <p className="text-[#008000] text-xs mt-2">
@@ -219,7 +219,7 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Explanation */}
-        <div className="p-6 bg-slate-900/40 border-[2px] border-[#601EF9] shadow-lg rounded-lg">
+        <div className="p-6 bg-transparent border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <h2 className="text-2xl font-bold text-white mb-4">
             Por que o Computador Quântico é Tão Mais Rápido?
           </h2>

@@ -160,7 +160,7 @@ const RoteamentoAereoTailwind = () => {
                 line.setAttribute('y1', airports[i].y);
                 line.setAttribute('x2', airports[i + 1].x);
                 line.setAttribute('y2', airports[i + 1].y);
-                line.setAttribute('stroke', '#3b82f6'); 
+                line.setAttribute('stroke', '#A855F7'); 
                 line.setAttribute('stroke-width', '1');
                 line.setAttribute('stroke-dasharray', '5,5'); 
                 line.setAttribute('opacity', '0.5');
@@ -171,7 +171,7 @@ const RoteamentoAereoTailwind = () => {
             line.setAttribute('y1', airports[airports.length - 1].y);
             line.setAttribute('x2', airports[0].x);
             line.setAttribute('y2', airports[0].y);
-            line.setAttribute('stroke', '#3b82f6');
+            line.setAttribute('stroke', '#A855F7');
             line.setAttribute('stroke-width', '1');
             line.setAttribute('stroke-dasharray', '5,5');
             line.setAttribute('opacity', '0.5');
@@ -208,7 +208,7 @@ const RoteamentoAereoTailwind = () => {
 
         airports.forEach(airport => {
             const cityDot = document.createElement('div');
-            cityDot.className = 'absolute rounded-full w-3 h-3 bg-red-500 transition-all duration-200 hover:bg-red-300 hover:scale-150';
+            cityDot.className = 'absolute rounded-full w-3 h-3 bg-purple-500 transition-all duration-200 hover:bg-purple-300 hover:scale-150';
             cityDot.style.left = `${airport.x}px`;
             cityDot.style.top = `${airport.y}px`;
             cityDot.style.transform = 'translate(-50%, -50%)'; 
@@ -240,7 +240,7 @@ const RoteamentoAereoTailwind = () => {
                 line.setAttribute('y1', airports[i].y);
                 line.setAttribute('x2', airports[i + 1].x);
                 line.setAttribute('y2', airports[i + 1].y);
-                line.setAttribute('stroke', '#ef4444'); 
+                line.setAttribute('stroke', '#A855F7'); 
                 line.setAttribute('stroke-width', '1');
                 line.setAttribute('stroke-dasharray', '5,5');
                 line.setAttribute('opacity', '0.5');
@@ -251,7 +251,7 @@ const RoteamentoAereoTailwind = () => {
             line.setAttribute('y1', airports[airports.length - 1].y);
             line.setAttribute('x2', airports[0].x);
             line.setAttribute('y2', airports[0].y);
-            line.setAttribute('stroke', '#ef4444');
+            line.setAttribute('stroke', '#A855F7');
             line.setAttribute('stroke-width', '1');
             line.setAttribute('stroke-dasharray', '5,5');
             line.setAttribute('opacity', '0.5');
@@ -275,11 +275,11 @@ const RoteamentoAereoTailwind = () => {
     // Lógica para os gráficos
     const { classicalSteps, quantumSteps } = simulateComputationSteps(numAirports);
     
-    // Cores fixas
-    const classicalColor = '#A100FF'; 
-    const quantumColor = '#2a36df'; 
-    const rmrFatorialColor = '#ef4444'; // Vermelho para TSP Clássico (Fatorial)
-    const rmrQuantumColor = '#38bdf8'; // Azul claro para TSP Quântico (Polinomial)
+    // Cores fixas (tudo na paleta roxa)
+    const classicalColor = '#A855F7'; // roxo claro para clássico
+    const quantumColor = '#7C3AED';   // roxo mais escuro para quântico
+    const rmrFatorialColor = '#C4A1FF'; // roxo claro para TSP Clássico (Fatorial)
+    const rmrQuantumColor = '#7C3AED';  // roxo escuro para TSP Quântico (Polinomial)
 
     // -------------------------------------------------------
     // GRÁFICO 1: Passos Computacionais (Escala Logarítmica) - AJUSTADO
@@ -533,19 +533,13 @@ const RoteamentoAereoTailwind = () => {
     const displayRotasText = numRMRCities <= 10 ? numRotas.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) : numRotasText;
 
 
+    // Fundo alinhado com as outras páginas internas (preto sólido)
     return (
         <div 
-            className="min-h-screen text-white p-4 sm:p-8 font-['Inter',_sans-serif]"
-            style={{
-                backgroundImage: `url('${BACKGROUND_IMAGE_URL}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundAttachment: 'fixed', 
-                backgroundColor: '#1f2937' 
-            }}
+            className="min-h-screen bg-black text-white p-4 sm:p-8"
         >
-            
-            <div className="relative z-10 w-full flex flex-col min-h-screen bg-gray 10000/95 rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
+            {/* content-wrapper */}
+            <div className="relative z-10 w-full flex flex-col min-h-screen rounded-xl shadow-2xl p-4 sm:p-0" ref={containerRef}>
                 
                 <header className="flex justify-center p-4">
                     <h1 className="text-center w-full text-purple-600 text-4xl sm:text-6xl font-extrabold tracking-wider">
@@ -636,9 +630,9 @@ const RoteamentoAereoTailwind = () => {
 
                     {/* GRÁFICO 3 + SIMULAÇÃO (Cidades de Pernambuco) */}
                     <div className="w-full max-w-[1000px] mx-auto my-8 font-['Inter',_sans-serif]">
-                         <div className="flex flex-col lg:flex-row bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-red-500/80">
+                         <div className="flex flex-col lg:flex-row bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-purple-600/80">
                             
-                            <div className="flex-2 p-6 border-b lg:border-b-0 lg:border-r border-red-500/80 flex flex-col items-center justify-center min-h-[350px]">
+                            <div className="flex-2 p-6 border-b lg:border-b-0 lg:border-r border-purple-600/80 flex flex-col items-center justify-center min-h-[350px]">
                                 <h3 className="text-gray-100 mb-5 text-xl font-semibold text-center">
                                     Exemplo Prático: Roteamento entre cidades: ({numRMRCities} Cidades) 📍
                                 </h3>
@@ -646,7 +640,7 @@ const RoteamentoAereoTailwind = () => {
                                 {/* SLIDER PARA CIDADES RMR */}
                                 <div className="mb-6 w-full max-w-[300px] mx-auto">
                                     <label htmlFor="num-rmr-cities" className="block mb-2 font-bold text-sm text-gray-100 text-center">
-                                        Cidades no Roteiro (N): <span className="text-red-400 font-extrabold">{numRMRCities}</span>
+                                        Cidades no Roteiro (N): <span className="text-purple-400 font-extrabold">{numRMRCities}</span>
                                     </label>
                                     <input
                                         type="range"
@@ -655,7 +649,7 @@ const RoteamentoAereoTailwind = () => {
                                         max="20" 
                                         value={numRMRCities}
                                         onChange={handleRMRSliderChange}
-                                        className="w-full h-2 bg-red-800 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-lg"
+                                        className="w-full h-2 bg-purple-900 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:bg-purple-500 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-lg"
                                     />
                                     <div className="flex justify-between text-xs text-gray-400 mt-1">
                                         <span>2</span>
@@ -676,8 +670,8 @@ const RoteamentoAereoTailwind = () => {
                                 <h4 className="text-center mb-4 text-gray-100 text-lg font-semibold">Passos Computacionais (N={numRMRCities})</h4>
                                     
                                 <div className="text-xs text-center mb-4 space-y-1">
-                                    <p className="text-red-400">Clássico: ~{formatSteps(rmrClassicalSteps)} passos</p>
-                                    <p className="text-sky-400">Quântico: ~{formatSteps(rmrQuantumSteps)} passos</p>
+                                    <p className="text-purple-300">Clássico: ~{formatSteps(rmrClassicalSteps)} passos</p>
+                                    <p className="text-purple-400">Quântico: ~{formatSteps(rmrQuantumSteps)} passos</p>
                                 </div>
 
                                 <div className="w-full h-auto max-h-[340px] flex-grow">
@@ -690,7 +684,7 @@ const RoteamentoAereoTailwind = () => {
 
                     {/* GRÁFICO 4: Complexidade Fatorial do Roteamento (Escala Logarítmica) */}
                     <div className="w-full max-w-[1000px] mx-auto mb-8 font-['Inter',_sans-serif]">
-                        <div className="bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-red-700/80 p-6">
+                        <div className="bg-gray-950/80 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-purple-700/80 p-6">
                             <h3 className="text-gray-100 mb-5 text-xl font-semibold text-center">
                                 Comparação de Complexidade no Roteamento (Escala Logarítmica) 🚀
                             </h3>
