@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div className="text-white">
       {/* Hero Section */}
-      <section className=" flex items-start justify-center px-6 pt-15">
+      <section className=" flex items-start justify-center px-6 pt-20">
         <div className="text-center max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight font-inter">
             <span className="block mb-2 animate-fade-in text-white">
@@ -33,7 +33,7 @@ const HomePage = () => {
       <VideoSection />
 
     {/* --- 3. NOVA SEÇÃO (SUBSTITUINDO OS PULL-CARDS) --- */}
-      <section className="py-20 mt-35">
+      <section className="py-1 mt-1">
         
         {/* Bloco 1: Computação Clássica */}
         <FeatureSection
