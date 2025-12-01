@@ -70,7 +70,7 @@ const PortfolioPage = () => {
 
   return (
     // Adicionando a classe de fonte ao elemento raiz
-    <div className="min-h-screen text-white py-20 font-josefin-sans bg-black">
+    <div className="min-h-screen text-white py-20 font-josefin-sans" style={{ backgroundColor: '#111' }}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <AnimatedBlock delay={0} isVisible={isVisible}>

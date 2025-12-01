@@ -20,7 +20,7 @@ const CaixeiroPage = () => {
     return `${animationClasses} opacity-0 translate-y-10`;
   };
   return (
-    <div className="min-h-screen text-white px-6 pt-12 bg-black">
+    <div className="min-h-screen text-white px-6 pt-12" style={{ backgroundColor: '#111' }}>
       <div className="max-w-4xl mx-auto">
         
         {/* Botão Voltar */}

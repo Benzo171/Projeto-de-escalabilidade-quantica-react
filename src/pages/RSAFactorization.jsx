@@ -61,11 +61,11 @@ export default function RSAFactorization() {
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
-  // Estilo comum para os cards (seguindo o visual roxo das outras páginas)
-  const cardStyle = "p-4 bg-gray-900/70 backdrop-blur-sm border border-purple-500/30 rounded-2xl shadow-lg transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20";
+  // Estilo comum para os cards (Fundo cinza-azulado transparente + Borda 3px Roxa)
+  const cardStyle = "p-4 bg-slate-900/60 backdrop-blur-sm border-[3px] border-[#601EF9] rounded-lg shadow-lg";
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-6">
+    <div className="min-h-screen bg- py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -79,22 +79,22 @@ export default function RSAFactorization() {
         </div>
 
         {/* Context Example */}
-        <div className="mb-8 bg-transparent rounded-2xl p-8 border border-purple-500/30 transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
+        <div className="mb-8 p-6 bg-slate-900/80 border-l-[6px] border-[#601EF9] rounded-r-lg shadow-md backdrop-blur-md">
           <h3 className="font-bold text-[#601EF9] text-xl mb-2">🔐 O que é RSA?</h3>
           <p className="text-slate-200 mb-3">
             RSA é o sistema que protege suas senhas, dados bancários e mensagens na internet.
             Funciona criando uma "chave" muito grande que é quase impossível quebrar.
           </p>
           <p className="text-slate-300">
-            <strong className="text-[#C4A1FF]">Computador normal:</strong> Levaria bilhões de anos para quebrar uma chave RSA.
+            <strong className="text-red-400">Computador normal:</strong> Levaria bilhões de anos para quebrar uma chave RSA.
           </p>
           <p className="text-slate-300 mt-1">
-            <strong className="text-[#E0C3FF]">Computador quântico:</strong> Poderia quebrar em minutos! Por isso os cientistas estão preocupados.
+            <strong className="text-blue-400">Computador quântico:</strong> Poderia quebrar em minutos! Por isso os cientistas estão preocupados.
           </p>
         </div>
 
         {/* Slider Control */}
-        <div className="mb-8 p-6 bg-gray-900/70 rounded-2xl border border-purple-500/30 backdrop-blur-md transition-all duration-300 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20">
+        <div className="mb-8 p-6 bg-slate-900/80 border-[#601EF9] rounded-lg border-[3px] backdrop-blur-md">
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-white mb-2">
@@ -124,7 +124,7 @@ export default function RSAFactorization() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Chart */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-900/60 border  border-purple-500/30 rounded-2xl shadow-lg p- h-140.5 pt-15 backdrop-blur-sm">
+            <div className="bg-slate-900/40 border-[3px] border-[#601EF9] rounded-lg shadow-lg p-6 h-96 backdrop-blur-sm">
               <DynamicComplexityChart
                 allLabels={allChartData.labels.map((l) => `${l}b`)}
                 allClassicalData={allChartData.classicalData}
@@ -145,7 +145,7 @@ export default function RSAFactorization() {
             
             {/* Classical Results */}
             <div className={cardStyle}>
-              <h3 className="font-bold text-[#E0C3FF] mb-3 border-b border-purple-500/40 pb-2">💻 Computador Normal</h3>
+              <h3 className="font-bold text-red-300 mb-3 border-b border-red-500/30 pb-2">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-slate-300 font-semibold">Tentativas:</p>
@@ -164,7 +164,7 @@ export default function RSAFactorization() {
 
             {/* Quantum Results */}
             <div className={cardStyle}>
-              <h3 className="font-bold text-[#C4A1FF] mb-3 border-b border-purple-500/40 pb-2">⚡ Computador Quântico</h3>
+              <h3 className="font-bold text-blue-300 mb-3 border-b border-blue-500/30 pb-2">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-slate-300 font-semibold">Tentativas:</p>
@@ -187,10 +187,10 @@ export default function RSAFactorization() {
 
             {/* Speedup */}
             <div className={cardStyle}>
-              <h3 className="font-bold text-[#F5E1FF] mb-3 border-b border-purple-500/40 pb-2">🚀 Quanto Mais Rápido?</h3>
+              <h3 className="font-bold text-green-300 mb-3 border-b border-green-500/30 pb-2">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
                 <p className="text-slate-300 font-semibold">Velocidade:</p>
-                <p className="text-[#C4A1FF] font-mono text-xl font-bold">
+                <p className="text-green-400 font-mono text-xl font-bold">
                   {formatScientific(classicalOps / quantumOps)}x
                 </p>
                 <p className="text-slate-400 text-xs mt-2 italic">
@@ -202,7 +202,7 @@ export default function RSAFactorization() {
         </div>
 
         {/* Explanation */}
-        <div className="p-6 bg-transparent border border-purple-500/30 shadow-lg rounded-2xl text-slate-200 transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
+        <div className="p-6 bg-slate-900/80 border-[3px] border-[#601EF9] shadow-lg rounded-lg text-slate-200">
           <h2 className="text-2xl font-bold text-white mb-4">
             Por que o Computador Quântico é Tão Mais Rápido?
           </h2>
