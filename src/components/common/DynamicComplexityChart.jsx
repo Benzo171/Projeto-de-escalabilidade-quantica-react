@@ -45,13 +45,13 @@ export default function DynamicComplexityChart({
       {
         label: classicalLabel,
         data: classicalData,
-        borderColor: '#ef4444',
-        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+        borderColor: '#A855F7', // roxo para clássico
+        backgroundColor: 'rgba(168, 85, 247, 0.18)',
         borderWidth: 2,
         tension: 0.4,
         fill: true,
         pointRadius: 5,
-        pointBackgroundColor: '#ef4444',
+        pointBackgroundColor: '#A855F7',
         pointBorderColor: '#fff',
         pointBorderWidth: 2,
         pointHoverRadius: 7,
@@ -59,13 +59,13 @@ export default function DynamicComplexityChart({
       {
         label: quantumLabel,
         data: quantumData,
-        borderColor: '#3b82f6',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        borderColor: '#7C3AED', // roxo mais escuro para quântico
+        backgroundColor: 'rgba(124, 58, 237, 0.18)',
         borderWidth: 2,
         tension: 0.4,
         fill: true,
         pointRadius: 5,
-        pointBackgroundColor: '#3b82f6',
+        pointBackgroundColor: '#7C3AED',
         pointBorderColor: '#fff',
         pointBorderWidth: 2,
         pointHoverRadius: 7,
