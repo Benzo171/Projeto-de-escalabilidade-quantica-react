@@ -56,6 +56,8 @@ No diretório raiz do projeto, instale todas as dependências listadas no packag
 Bash
 
 npm install
+
+npm run dev
 # OU
 yarn install
 
