@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import necessário
 import DynamicComplexityChart from '../components/common/DynamicComplexityChart';
 import {
   calculateClassicalSearchComplexity,
@@ -43,6 +44,8 @@ function formatTimeSimple(years) {
 }
 
 export default function DatabaseSearch() {
+  const navigate = useNavigate(); // Hook para navegação
+
   // --- ESTADO DA SEÇÃO 1 (Slider) ---
   const [exponent, setExponent] = useState(12);
   const databaseSize = Math.pow(10, exponent);
@@ -97,6 +100,17 @@ export default function DatabaseSearch() {
   
   const invoiceClassicalTime = estimateTimeInYears(invoiceClassicalOps);
   const invoiceQuantumTime = estimateTimeInYears(invoiceQuantumOps);
+
+  // --- LÓGICA DO BOTÃO VOLTAR ---
+  const handleBackToCategories = () => {
+    navigate('/'); 
+    setTimeout(() => {
+        const section = document.getElementById('categories-section');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 300);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-6">
@@ -333,7 +347,7 @@ export default function DatabaseSearch() {
         </div>
 
         {/* Explanation 2 */}
-        <div className="p-6 mt-8 bg-gray-900/60 border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
+        <div className="p-6 mt-8 bg-gray-900/60 border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">
             A Importância do Quântico em Dados Empresariais
           </h2>
@@ -348,6 +362,19 @@ export default function DatabaseSearch() {
               Isso não significa que o Quântico substitui o banco de dados SQL! A busca clássica em bancos de dados estruturados e indexados (onde o tempo é O(log N)) ainda é muito rápida. O Quântico é um "super-herói" para problemas não estruturados onde a única opção é procurar um por um (O(N)).
             </p>
           </div>
+        </div>
+        
+        {/* --- BOTÃO VOLTAR PARA O MENU --- */}
+        <div className="grid grid-cols-1">
+            <div className="max-w-xs mx-auto w-full"> 
+                <button
+                    onClick={handleBackToCategories}
+                    className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-gray-800/80 border border-purple-500/50 rounded-xl text-white font-bold hover:bg-purple-900/40 hover:border-purple-400 hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer"
+                >
+                    <span className="text-xl">←</span>
+                    Voltar para o Menu
+                </button>
+            </div>
         </div>
 
       </div>

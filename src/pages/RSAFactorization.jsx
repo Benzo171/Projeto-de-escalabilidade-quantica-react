@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom'; // Usamos useNavigate para controle manual
 import DynamicComplexityChart from '../components/common/DynamicComplexityChart';
 import {
   calculateGNFSComplexity,
@@ -34,6 +35,7 @@ function formatTimeSimple(years) {
 
 export default function RSAFactorization() {
   const [bitsL, setBitsL] = useState(2048);
+  const navigate = useNavigate(); // Hook para navegação
 
   // Gera todos os dados possíveis
   const allChartData = useMemo(() => {
@@ -61,8 +63,22 @@ export default function RSAFactorization() {
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
-  // Estilo comum para os cards (seguindo o visual roxo das outras páginas)
+  // Estilo comum para os cards
   const cardStyle = "p-4 bg-gray-900/70 backdrop-blur-sm border border-purple-500/30 rounded-2xl shadow-lg transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20";
+
+  // --- LÓGICA DO BOTÃO VOLTAR ---
+  const handleBackToCategories = () => {
+    navigate('/'); // 1. Vai para a Home
+    
+    // 2. Espera 300ms para garantir que a Home carregou
+    setTimeout(() => {
+        const section = document.getElementById('categories-section');
+        if (section) {
+            // 3. Rola até a secção suavemente
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 300);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-6">
@@ -227,6 +243,20 @@ export default function RSAFactorization() {
             </p>
           </div>
         </div>
+
+        {/* --- GRID DO BOTÃO VOLTAR (Atualizado com a nova lógica) --- */}
+        <div className="mt-12 grid grid-cols-1">
+            <div className="max-w-xs mx-auto w-full"> 
+                <button
+                    onClick={handleBackToCategories}
+                    className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-gray-800/80 border border-purple-500/50 rounded-xl text-white font-bold hover:bg-purple-900/40 hover:border-purple-400 hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer"
+                >
+                    <span className="text-xl">←</span>
+                    Voltar para o Menu
+                </button>
+            </div>
+        </div>
+
       </div>
     </div>
   );
