@@ -373,4 +373,21 @@
   .formula-card {
     background-color: rgba(119, 3, 186, 0.6);
   }
+  /* src/index.css */
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px); /* Sobe 20px */
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
 }
