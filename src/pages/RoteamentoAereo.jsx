@@ -17,7 +17,8 @@ ChartJS.register(
 
 // -------------------------------------------------------------------
 // 1. CONFIGURAÇÃO DO BACKGROUND
-const BACKGROUND_IMAGE_URL = 'src/assets/imagens/image 66.png'; 
+const BACKGROUND_IMAGE_URL = 'src/assets/imagens/MAPA.JPG';
+const WORLD_MAP_IMAGE_URL = 'src/assets/imagens/mundi.png'; 
 // -------------------------------------------------------------------
 
 // --- Dados de Cidades da Região Metropolitana do Recife (RMR) e Proximidades ---
@@ -561,13 +562,21 @@ const RoteamentoAereoTailwind = () => {
                             <div className="flex-2 p-6 border-b lg:border-b-0 lg:border-r border-purple-600 flex flex-col items-center justify-center min-h-[350px]">
                                 <h3 className="text-gray-100 mb-5 text-xl font-semibold">Simulação de Rotas: ({numAirports} Aeroportos)</h3>
                                 
-                                <div 
-                                    id="airport-visualization-sim" 
-                                    ref={airportVisualizationRef}
-                                    className="w-full h-[300px] border border-dashed border-gray-400/50 flex justify-center items-center text-gray-500 italic bg-gray-800/50 rounded-lg relative overflow-hidden"
-                                >
+                               
+                                        <div 
+                                        id="airport-visualization-sim" 
+                                        ref={airportVisualizationRef}
+                                        // 👇 ADICIONADO: Estilo para aplicar o Mapa Mundi
+                                        style={{ 
+                                            backgroundImage: `url(${WORLD_MAP_IMAGE_URL})`,
+                                            backgroundSize: 'cover', // Ajusta a imagem para cobrir o div
+                                            backgroundPosition: 'center', // Centraliza a imagem
+                                        }}
+                                        className="w-full h-[300px] border border-dashed border-gray-400/50 flex justify-center items-center text-gray-500 italic bg-gray-800/50 rounded-lg relative overflow-hidden"
+                                    >
                                     {numAirports === 0 ? 'Nenhum aeroporto selecionado.' : null}
                                 </div>
+// ...
                             </div>
                             
                             <div className="flex-1 p-6 flex flex-col justify-between min-w-[300px]">
@@ -658,11 +667,17 @@ const RoteamentoAereoTailwind = () => {
                                 </div>
                                 
                                 <div 
-                                    ref={airportVisualizationRMRRef}
-                                    className="w-full h-[300px] border border-dashed border-gray-400/50 flex justify-center items-center text-gray-500 italic bg-gray-800/50 rounded-lg relative overflow-hidden"
-                                >
-                                    {numRMRCities < 2 ? 'Selecione no mínimo 2 cidades.' : null}
-                                </div>
+    ref={airportVisualizationRMRRef}
+    // 👇 ADICIONADO: Estilo para aplicar a imagem de fundo como um mapa
+    style={{ 
+        backgroundImage: `url(${BACKGROUND_IMAGE_URL})`,
+        backgroundSize: 'cover', // Garante que o mapa cubra toda a área
+        backgroundPosition: 'center', // Centraliza a imagem
+    }}
+    className="w-full h-[300px] border border-dashed border-gray-400/50 flex justify-center items-center text-gray-500 italic bg-gray-800/50 rounded-lg relative overflow-hidden"
+>
+    {numRMRCities < 2 ? 'Selecione no mínimo 2 cidades.' : null}
+</div>
                             </div>
 
                             {/* GRÁFICO DE BARRAS RMR */}
