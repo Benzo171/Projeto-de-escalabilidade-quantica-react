@@ -1,37 +1,44 @@
+import React from 'react';
+
 const VideoSection = () => {
+  // -----------------------------------------------------------
+  // 1. COLE O LINK DO SEU VÍDEO AQUI:
+  // (Aceita: Shorts, Links normais, youtu.be, etc.)
+  // -----------------------------------------------------------
+  const videoLink = "https://www.youtube.com/watch?v=X8MZWCGgIb8&t=43s"; 
+
+  // Função ultra-robusta para extrair o ID de qualquer tipo de link do YouTube
+  const getVideoId = (url) => {
+    if (!url) return null;
+    
+    // Tenta encontrar o padrão de 11 caracteres (ID do YouTube) em vários formatos
+    const regExp = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([^#&?]{11})/;
+    const match = url.match(regExp);
+    
+    return match ? match[1] : null;
+  };
+
+  // Se a função falhar, usa um ID padrão de segurança
+  const videoId = getVideoId(videoLink) || "JhHMJCUmq28";
+
   return (
-    <div className="min-h-screen "> {/* Adicionei bg-black para evitar faixas brancas se o vídeo carregar lento */}
-      
-      {/* --- BLOCO DE TEXTO --- */}
-      {/* Mantive o padding (pt-24) para o texto não colar no topo */}
-      <div className="w-full flex flex-col items-center pt-30 pb-40  px-4">
-        <h1 className="text-4xl md:text-6xl text-center font-bold text-white mb-1">
-          O futuro da tecnologia
-        </h1>
-        <h2 className="text-3xl md:text-5xl text-center font-bold text-white">
-          Está Aqui!
-        </h2>
+    <section className="w-full py-12 px-6 flex justify-center">
+      <div className="w-full max-w-5xl">
+        {/* Container com aspect ratio 16:9 */}
+        <div className="relative w-full pb-[56.25%] h-0 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(124,58,237,0.3)] border border-purple-500/30 bg-gray-900">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            // Mudamos para youtube-nocookie.com para evitar bloqueios de navegador
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+            title="Vídeo sobre Computação Quântica"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
-
-      {/* --- BLOCO DO VÍDEO (Full Width) --- */}
-      {/* ALTERAÇÕES FEITAS:
-          1. Removi 'max-w-5xl': Para não limitar a largura.
-          2. Removi 'rounded-xl': Para não ter cantos redondos (já que vai tocar na borda).
-          3. Removi 'shadow-xl': Sombra não aparece se o vídeo ocupa tudo.
-          4. Mantive 'w-full' e 'aspect-video'.
-      */}
-      <div className="w-full pb-50 ">
-        <iframe
-          className="w-full h-[550px] object-cover"
-          src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO?autoplay=1&mute=1&controls=0&loop=1&playlist=SEU_ID_DO_VIDEO" 
-          title="Video Background"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-
-    </div>
+    </section>
   );
 };
 

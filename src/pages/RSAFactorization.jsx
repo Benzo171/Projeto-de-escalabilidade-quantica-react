@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom'; // Usamos useNavigate para controle manual
+import { useNavigate, Link } from 'react-router-dom'; // Importando Link
 import DynamicComplexityChart from '../components/common/DynamicComplexityChart';
 import {
   calculateGNFSComplexity,
@@ -35,9 +35,8 @@ function formatTimeSimple(years) {
 
 export default function RSAFactorization() {
   const [bitsL, setBitsL] = useState(2048);
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
-  // Gera todos os dados possíveis
   const allChartData = useMemo(() => {
     const labels = [];
     const classicalData = [];
@@ -52,29 +51,22 @@ export default function RSAFactorization() {
     return { labels, classicalData, quantumData };
   }, []);
 
-  // Encontra o índice correspondente ao valor atual do slider
   const currentIndex = useMemo(() => {
     return allChartData.labels.findIndex((label) => label === bitsL);
   }, [bitsL, allChartData.labels]);
 
-  // Calcula valores para o slider atual
   const classicalOps = useMemo(() => calculateGNFSComplexity(bitsL), [bitsL]);
   const quantumOps = useMemo(() => calculateShorComplexity(bitsL), [bitsL]);
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
-  // Estilo comum para os cards
   const cardStyle = "p-4 bg-gray-900/70 backdrop-blur-sm border border-purple-500/30 rounded-2xl shadow-lg transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20";
 
-  // --- LÓGICA DO BOTÃO VOLTAR ---
   const handleBackToCategories = () => {
-    navigate('/'); // 1. Vai para a Home
-    
-    // 2. Espera 300ms para garantir que a Home carregou
+    navigate('/'); 
     setTimeout(() => {
         const section = document.getElementById('categories-section');
         if (section) {
-            // 3. Rola até a secção suavemente
             section.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }, 300);
@@ -90,7 +82,7 @@ export default function RSAFactorization() {
           </h1>
           <p className="text-lg text-slate-300">
             Veja como um computador quântico pode quebrar a segurança da internet muito mais rápido
-            do que um computador normal. Isso é importante para entender o futuro da privacidade online.
+            do que um computador normal.
           </p>
         </div>
 
@@ -99,13 +91,12 @@ export default function RSAFactorization() {
           <h3 className="font-bold text-[#601EF9] text-xl mb-2">🔐 O que é RSA?</h3>
           <p className="text-slate-200 mb-3">
             RSA é o sistema que protege suas senhas, dados bancários e mensagens na internet.
-            Funciona criando uma "chave" muito grande que é quase impossível quebrar.
           </p>
           <p className="text-slate-300">
             <strong className="text-[#C4A1FF]">Computador normal:</strong> Levaria bilhões de anos para quebrar uma chave RSA.
           </p>
           <p className="text-slate-300 mt-1">
-            <strong className="text-[#E0C3FF]">Computador quântico:</strong> Poderia quebrar em minutos! Por isso os cientistas estão preocupados.
+            <strong className="text-[#E0C3FF]">Computador quântico:</strong> Poderia quebrar em minutos!
           </p>
         </div>
 
@@ -116,9 +107,6 @@ export default function RSAFactorization() {
               <label className="block text-sm font-semibold text-white mb-2">
                 Tamanho da Chave de Segurança: <span className="text-[#601EF9] text-lg">{bitsL} bits</span>
               </label>
-              <p className="text-xs text-slate-400 mb-3">
-                (Quanto maior, mais segura - mas também mais difícil de quebrar)
-              </p>
               <input
                 type="range"
                 min="256"
@@ -138,7 +126,6 @@ export default function RSAFactorization() {
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Chart */}
           <div className="lg:col-span-2">
             <div className="bg-gray-900/60 border border-purple-500/30 rounded-2xl shadow-lg p-6 h-96 backdrop-blur-sm">
               <DynamicComplexityChart
@@ -156,10 +143,7 @@ export default function RSAFactorization() {
             </div>
           </div>
 
-          {/* Results Panel */}
           <div className="space-y-4">
-            
-            {/* Classical Results */}
             <div className={cardStyle}>
               <h3 className="font-bold text-[#E0C3FF] mb-3 border-b border-purple-500/40 pb-2">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
@@ -178,7 +162,6 @@ export default function RSAFactorization() {
               </div>
             </div>
 
-            {/* Quantum Results */}
             <div className={cardStyle}>
               <h3 className="font-bold text-[#C4A1FF] mb-3 border-b border-purple-500/40 pb-2">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
@@ -201,7 +184,6 @@ export default function RSAFactorization() {
               </div>
             </div>
 
-            {/* Speedup */}
             <div className={cardStyle}>
               <h3 className="font-bold text-[#F5E1FF] mb-3 border-b border-purple-500/40 pb-2">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
@@ -225,34 +207,48 @@ export default function RSAFactorization() {
           <div className="space-y-4">
             <p>
               <strong className="text-[#601EF9]">Computador Normal:</strong> Tenta quebrar a senha testando uma combinação por vez.
-              Para uma chave RSA-2048, precisaria de bilhões de anos testando todas as possibilidades.
             </p>
             <p>
               <strong className="text-[#601EF9]">Computador Quântico:</strong> Usa um truque especial chamado "Algoritmo de Shor".
-              Em vez de testar uma por uma, ele testa muitas ao mesmo tempo (superposição quântica).
-              Isso reduz bilhões de anos para apenas minutos!
-            </p>
-            <p>
-              <strong className="text-[#601EF9]">Por que isso é importante?</strong> Toda vez que você acessa seu banco online,
-              envia um email ou faz uma compra, a segurança depende de RSA. Se computadores quânticos
-              ficarem poderosos, precisaremos de novas formas de proteção.
-            </p>
-            <p>
-              <strong className="text-[#601EF9]">O que estão fazendo?</strong> Cientistas estão desenvolvendo "criptografia pós-quântica"
-              que funcionará mesmo contra computadores quânticos.
             </p>
           </div>
         </div>
 
-        {/* --- GRID DO BOTÃO VOLTAR (Atualizado com a nova lógica) --- */}
-        <div className="mt-12 grid grid-cols-1">
+        {/* --- NAVEGAÇÃO ENTRE OS EXEMPLOS (NOVA GRADE) --- */}
+        <div className="mt-20 mb-12">
+            <h3 className="text-2xl font-bold text-center mb-8 text-purple-200">
+                Continue Explorando Outros Exemplos 🚀
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Botão 1: RSA (Ativo) */}
+                <div className="p-5 rounded-xl border border-purple-500 bg-purple-900/30 cursor-default">
+                    <h4 className="font-bold text-lg mb-2 text-white">🔐 Quebrando Senhas (RSA)</h4>
+                    <p className="text-sm text-gray-300">Você está explorando este exemplo agora.</p>
+                </div>
+
+                {/* Botão 2: TSP */}
+                <Link to="/roteamento-aereo" className="p-5 rounded-xl border bg-gray-900/40 border-gray-700 hover:border-purple-500 hover:bg-purple-900/20 transition-all duration-300 group">
+                    <h4 className="font-bold text-lg mb-2 text-purple-300 group-hover:text-purple-200">✈️ Roteamento (TSP)</h4>
+                    <p className="text-sm text-gray-400">O problema do caixeiro viajante e a otimização logística de rotas.</p>
+                </Link>
+
+                {/* Botão 3: Database */}
+                <Link to="/database-search" className="p-5 rounded-xl border bg-gray-900/40 border-gray-700 hover:border-purple-500 hover:bg-purple-900/20 transition-all duration-300 group">
+                    <h4 className="font-bold text-lg mb-2 text-purple-300 group-hover:text-purple-200">🔍 Busca em Dados</h4>
+                    <p className="text-sm text-gray-400">O algoritmo de Grover encontrando agulhas no palheiro.</p>
+                </Link>
+            </div>
+        </div>
+
+        {/* --- BOTÃO VOLTAR PARA O MENU --- */}
+        <div className="mt-12 grid grid-cols-1 mb-20">
             <div className="max-w-xs mx-auto w-full"> 
                 <button
                     onClick={handleBackToCategories}
                     className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-gray-800/80 border border-purple-500/50 rounded-xl text-white font-bold hover:bg-purple-900/40 hover:border-purple-400 hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer"
                 >
                     <span className="text-xl">←</span>
-                    Voltar para o Menu
+                    Voltar para o Menu Principal
                 </button>
             </div>
         </div>

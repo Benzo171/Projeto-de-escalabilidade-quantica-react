@@ -11,7 +11,6 @@ import ClassicaPage from './pages/ClassicaPage';
 import QuanticaPage from './pages/QuanticaPage';
 import CoexistenciaPage from './pages/CoexistenciaPage';
 import './App.css';
-import TspPage from './pages/TspPage';
 import RoteamentoAereo from './pages/RoteamentoAereo';
 import RSAFactorization from './pages/RSAFactorization';
 import DatabaseSearch from './pages/DatabaseSearch';
@@ -31,7 +30,6 @@ function App() {
           <Route path="classica" element={<ClassicaPage />} />
           <Route path="quantica" element={<QuanticaPage />} />
           <Route path="coexistencia" element={<CoexistenciaPage />} />
-          <Route path="tsp" element={<TspPage />} />
           <Route path="roteamento-aereo" element={<RoteamentoAereo />} />
           <Route path="rsa" element={<RSAFactorization />} />
           <Route path="database-search" element={<DatabaseSearch />} />

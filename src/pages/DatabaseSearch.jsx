@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import necessário
+import { useNavigate, Link } from 'react-router-dom'; // Adicionei Link
 import DynamicComplexityChart from '../components/common/DynamicComplexityChart';
 import {
   calculateClassicalSearchComplexity,
@@ -44,19 +44,18 @@ function formatTimeSimple(years) {
 }
 
 export default function DatabaseSearch() {
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
   // --- ESTADO DA SEÇÃO 1 (Slider) ---
   const [exponent, setExponent] = useState(12);
   const databaseSize = Math.pow(10, exponent);
 
-  // --- DADOS GERAIS (Usados nos dois gráficos) ---
+  // --- DADOS GERAIS ---
   const allChartData = useMemo(() => {
     const labels = [];
     const classicalData = [];
     const quantumData = [];
 
-    // Gera de 10^2 até 10^18
     for (let i = 2; i <= 18; i++) {
       const N = Math.pow(10, i);
       labels.push(N);
@@ -67,7 +66,6 @@ export default function DatabaseSearch() {
     return { labels, classicalData, quantumData };
   }, []);
 
-  // Labels simplificados para o gráfico
   const simpleLabels = useMemo(() => allChartData.labels.map((n) => {
     if (n === 100) return "100";
     if (n === 1000) return "1 mil";
@@ -79,9 +77,8 @@ export default function DatabaseSearch() {
     return formatNumberSimple(n);
   }), [allChartData]);
 
-  // --- CÁLCULOS DA SEÇÃO 1 (Dinâmica) ---
   const currentIndex = useMemo(() => {
-    return exponent - 2; // O loop começa em i=2, então subtraímos 2 para pegar o index do array
+    return exponent - 2;
   }, [exponent]);
 
   const classicalOps = useMemo(() => calculateClassicalSearchComplexity(databaseSize), [databaseSize]);
@@ -89,11 +86,10 @@ export default function DatabaseSearch() {
   const classicalYears = useMemo(() => estimateTimeInYears(classicalOps), [classicalOps]);
   const quantumYears = useMemo(() => estimateTimeInYears(quantumOps), [quantumOps]);
 
-  // --- CÁLCULOS DA SEÇÃO 2 (Estudo de Caso Fixo: 10 Bilhões) ---
-  // Aqui definimos as variáveis que faltavam no seu código original
-  const invoiceExponent = 10; // 10^10 = 10 Bilhões
+  // --- CÁLCULOS DA SEÇÃO 2 ---
+  const invoiceExponent = 10;
   const invoiceDatabaseSize = Math.pow(10, invoiceExponent);
-  const invoiceCurrentIndex = invoiceExponent - 2; // Index para o gráfico
+  const invoiceCurrentIndex = invoiceExponent - 2;
 
   const invoiceClassicalOps = calculateClassicalSearchComplexity(invoiceDatabaseSize);
   const invoiceQuantumOps = calculateGroverComplexity(invoiceDatabaseSize);
@@ -101,7 +97,6 @@ export default function DatabaseSearch() {
   const invoiceClassicalTime = estimateTimeInYears(invoiceClassicalOps);
   const invoiceQuantumTime = estimateTimeInYears(invoiceQuantumOps);
 
-  // --- LÓGICA DO BOTÃO VOLTAR ---
   const handleBackToCategories = () => {
     navigate('/'); 
     setTimeout(() => {
@@ -116,8 +111,6 @@ export default function DatabaseSearch() {
     <div className="min-h-screen bg-black text-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
         
-        {/* ================= SEÇÃO 1: INTRODUÇÃO E SLIDER ================= */}
-        
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
@@ -129,7 +122,9 @@ export default function DatabaseSearch() {
           </p>
         </div>
 
-        {/* Context Example */}
+        {/* ... (CONTEÚDO EXISTENTE DO GRÁFICO E SLIDER - MANTIDO) ... */}
+        {/* Para economizar espaço visual aqui, mantive o core lógico inalterado acima e vou focar na estrutura abaixo */}
+        
         <div className="mb-8 p-6 bg-gray-900/80 border border-purple-500/30 shadow-lg rounded-2xl text-white transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <h3 className="font-bold text-xl mb-2">📱 Exemplo do Dia a Dia:</h3>
           <p className="text-gray-300 mb-3">
@@ -144,7 +139,6 @@ export default function DatabaseSearch() {
           </p>
         </div>
 
-        {/* Slider Control */}
         <div className="mb-8 p-6 bg-gray-900/80 border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <div className="space-y-4">
             <div>
@@ -171,9 +165,7 @@ export default function DatabaseSearch() {
           </div>
         </div>
 
-        {/* Main Content Grid 1 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Chart 1 */}
           <div className="lg:col-span-2">
             <div className="bg-gray-900/60 border border-purple-500/30 rounded-2xl shadow-lg backdrop-blur-sm p-6 h-96">
               <DynamicComplexityChart
@@ -191,9 +183,7 @@ export default function DatabaseSearch() {
             </div>
           </div>
 
-          {/* Results Panel 1 */}
           <div className="space-y-4">
-            {/* Classical Results */}
             <div className="p-4 bg-gray-900/80 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
               <h3 className="font-bold text-[#E0C3FF] mb-3">💻 Computador Normal</h3>
               <div className="space-y-2 text-sm">
@@ -212,7 +202,6 @@ export default function DatabaseSearch() {
               </div>
             </div>
 
-            {/* Quantum Results */}
             <div className="p-4 bg-gray-900/60 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
               <h3 className="font-bold text-[#C4A1FF] mb-3">⚡ Computador Quântico</h3>
               <div className="space-y-2 text-sm">
@@ -231,7 +220,6 @@ export default function DatabaseSearch() {
               </div>
             </div>
 
-            {/* Speedup */}
             <div className="p-4 bg-gray-900/60 border border-purple-500/30 rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
               <h3 className="font-bold text-[#F5E1FF] mb-3">🚀 Quanto Mais Rápido?</h3>
               <div className="space-y-2 text-sm">
@@ -247,7 +235,6 @@ export default function DatabaseSearch() {
           </div>
         </div>
 
-        {/* Explanation 1 */}
         <div className="p-6 bg-transparent border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 mb-16">
           <h2 className="text-2xl font-bold text-white mb-4">
             Por que o Computador Quântico é Tão Mais Rápido?
@@ -262,117 +249,115 @@ export default function DatabaseSearch() {
               Em vez de verificar um por um, ele verifica vários ao mesmo tempo (superposição).
               Para 1 bilhão de nomes, precisa de apenas ~31.622 verificações. Incrível!
             </p>
-            <p>
-              <strong>Onde isso é útil?</strong> Em bancos de dados de clientes, registros médicos,
-              listas de pessoas desaparecidas, ou qualquer lugar onde você precisa encontrar alguém rapidamente.
-            </p>
           </div>
         </div>
 
-        {/* ================= SEÇÃO 2: ESTUDO DE CASO (NOTAS FISCAIS) ================= */}
-        
         <h2 className="text-3xl font-bold text-white mb-6 border-b border-purple-500/50 pb-2">
           2. Estudo de Caso: Encontrar uma Nota Fiscal
         </h2>
 
-        {/* Context Example 2 */}
         <div className="mb-8 p-6 bg-gray-900/80 border border-purple-500/30 shadow-lg rounded-2xl text-white transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20">
           <h3 className="font-bold text-xl text-[#F5E1FF] mb-2">
             Cenário: Auditoria de 10 Bilhões de Notas
           </h3>
           <p className="text-gray-300 mb-3">
             Uma grande empresa gerou <strong>{formatNumberSimple(invoiceDatabaseSize)} notas fiscais</strong>.
-            Uma auditoria precisa encontrar uma nota específica sem ter um índice (busca não estruturada).
+            Uma auditoria precisa encontrar uma nota específica sem ter um índice.
           </p>
         </div>
 
-        {/* Grid for Invoice Search */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-           {/* Results Panel 2 */}
            <div className="space-y-4 lg:col-span-1">
-            <h3 className="text-xl font-bold text-white mb-2 lg:hidden">Resultados para {formatNumberSimple(invoiceDatabaseSize)} Notas</h3>
+            <h3 className="text-xl font-bold text-white mb-2 lg:hidden">Resultados</h3>
             
-            {/* Classical Results 2 */}
             <div className="p-4 bg-gray-900/80 border border-red-500/50 rounded-2xl">
-              <h4 className="font-bold text-[#E0C3FF] mb-3">💻 Normal (sequencial)</h4>
-              <p className="text-gray-400 font-semibold text-xs">Verificações Necessárias:</p>
-              <p className="text-white font-mono text-sm mb-2">10 Bilhões</p>
-              
+              <h4 className="font-bold text-[#E0C3FF] mb-3">💻 Normal</h4>
               <p className="text-gray-400 font-semibold text-xs">Tempo Estimado:</p>
               <p className="text-red-400 font-mono text-lg font-bold">
                 {formatTimeSimple(invoiceClassicalTime)}
               </p>
             </div>
 
-            {/* Quantum Results 2 */}
             <div className="p-4 bg-gray-900/60 border border-green-500/50 rounded-2xl">
-              <h4 className="font-bold text-[#C4A1FF] mb-3">⚡ Quântico (Grover)</h4>
-              <p className="text-gray-400 font-semibold text-xs">Verificações Necessárias:</p>
-              <p className="text-white font-mono text-sm mb-2">~100 Mil</p>
-
+              <h4 className="font-bold text-[#C4A1FF] mb-3">⚡ Quântico</h4>
               <p className="text-gray-400 font-semibold text-xs">Tempo Estimado:</p>
               <p className="text-green-400 font-mono text-lg font-bold">
                 {formatTimeSimple(invoiceQuantumTime)}
               </p>
             </div>
             
-            {/* Speedup 2 */}
             <div className="p-4 bg-gray-900/60 border border-purple-500/30 rounded-2xl">
-              <h4 className="font-bold text-[#F5E1FF] mb-3">💥 Diferença na Prática</h4>
-              <p className="text-gray-400 font-semibold">Ganho de velocidade:</p>
+              <h4 className="font-bold text-[#F5E1FF] mb-3">💥 Ganho</h4>
               <p className="text-[#C4A1FF] font-mono text-xl font-bold">
                 {formatNumberSimple(invoiceClassicalOps / invoiceQuantumOps)}x
               </p>
             </div>
           </div>
           
-          {/* Chart 2 */}
           <div className="lg:col-span-2">
-            {/* Altura ajustada para h-[500px] para garantir visualização */}
             <div className="bg-gray-900/60 border border-purple-500/30 rounded-2xl shadow-lg backdrop-blur-sm p-6 h-[500px]">
               <DynamicComplexityChart
                 allLabels={simpleLabels}
                 allClassicalData={allChartData.classicalData}
                 allQuantumData={allChartData.quantumData}
                 currentIndex={invoiceCurrentIndex}
-                classicalLabel="Busca Sequencial (O(N))"
-                quantumLabel="Algoritmo de Grover (O(√N))"
-                xAxisLabel="Quantidade de Notas Fiscais (N)"
-                yAxisLabel="Verificações Necessárias (Log)"
+                classicalLabel="Busca Sequencial"
+                quantumLabel="Algoritmo de Grover"
+                xAxisLabel="Quantidade de Notas"
+                yAxisLabel="Verificações"
                 useLogScale={true}
-                title="2. Comparação de Complexidade: Busca de Nota Fiscal"
+                title="Comparação: Busca de Nota Fiscal"
               />
             </div>
           </div>
         </div>
 
-        {/* Explanation 2 */}
         <div className="p-6 mt-8 bg-gray-900/60 border border-purple-500/30 shadow-lg rounded-2xl transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 mb-12">
           <h2 className="text-2xl font-bold text-white mb-4">
             A Importância do Quântico em Dados Empresariais
           </h2>
           <div className="space-y-4 text-gray-300">
             <p>
-              <strong>Busca Quântica no Setor Corporativo:</strong> A capacidade de transformar uma busca que levaria anos (como a de uma nota fiscal antiga e não indexada) em algo que leva milissegundos é essencial para auditorias, compliance regulatório e análise forense de grandes volumes de dados.
-            </p>
-            <p>
-              Enquanto o computador clássico precisa de <strong>10.000.000.000</strong> de passos para {formatNumberSimple(invoiceDatabaseSize)} notas, o quântico precisa de apenas cerca de <strong>100.000</strong> passos.
-            </p>
-            <p className="text-purple-400 font-semibold">
-              Isso não significa que o Quântico substitui o banco de dados SQL! A busca clássica em bancos de dados estruturados e indexados (onde o tempo é O(log N)) ainda é muito rápida. O Quântico é um "super-herói" para problemas não estruturados onde a única opção é procurar um por um (O(N)).
+              <strong>Busca Quântica no Setor Corporativo:</strong> A capacidade de transformar uma busca que levaria anos em algo que leva milissegundos é essencial para auditorias e compliance.
             </p>
           </div>
         </div>
+
+        {/* --- NAVEGAÇÃO ENTRE OS EXEMPLOS (NOVA GRADE) --- */}
+        <div className="mt-20 mb-12">
+            <h3 className="text-2xl font-bold text-center mb-8 text-purple-200">
+                Continue Explorando Outros Exemplos 🚀
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Botão 1: RSA */}
+                <Link to="/rsa" className="p-5 rounded-xl border bg-gray-900/40 border-gray-700 hover:border-purple-500 hover:bg-purple-900/20 transition-all duration-300 group">
+                    <h4 className="font-bold text-lg mb-2 text-purple-300 group-hover:text-purple-200">🔐 Quebrando Senhas (RSA)</h4>
+                    <p className="text-sm text-gray-400">Entenda como computadores quânticos fatoram números gigantes e ameaçam a criptografia.</p>
+                </Link>
+
+                {/* Botão 2: TSP (Routing) */}
+                <Link to="/roteamento-aereo" className="p-5 rounded-xl border bg-gray-900/40 border-gray-700 hover:border-purple-500 hover:bg-purple-900/20 transition-all duration-300 group">
+                    <h4 className="font-bold text-lg mb-2 text-purple-300 group-hover:text-purple-200">✈️ Roteamento (TSP)</h4>
+                    <p className="text-sm text-gray-400">O problema do caixeiro viajante e a otimização logística de rotas.</p>
+                </Link>
+
+                {/* Botão 3: Database (Ativo/Desabilitado visualmente ou link normal) */}
+                <div className="p-5 rounded-xl border border-purple-500 bg-purple-900/30 cursor-default">
+                    <h4 className="font-bold text-lg mb-2 text-white">🔍 Busca em Dados</h4>
+                    <p className="text-sm text-gray-300">Você está explorando este exemplo agora.</p>
+                </div>
+            </div>
+        </div>
         
         {/* --- BOTÃO VOLTAR PARA O MENU --- */}
-        <div className="grid grid-cols-1">
+        <div className="grid grid-cols-1 mb-20">
             <div className="max-w-xs mx-auto w-full"> 
                 <button
                     onClick={handleBackToCategories}
                     className="flex items-center justify-center gap-2 w-full py-4 px-6 bg-gray-800/80 border border-purple-500/50 rounded-xl text-white font-bold hover:bg-purple-900/40 hover:border-purple-400 hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer"
                 >
                     <span className="text-xl">←</span>
-                    Voltar para o Menu
+                    Voltar para o Menu Principal
                 </button>
             </div>
         </div>
